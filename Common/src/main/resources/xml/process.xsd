@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.w3school.com.cn" xmlns="http://www.w3school.com.cn" >
+	<xs:element name="root">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="channel" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="channel">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="req" type="xs:string"/>
+				<xs:element name="resp" type="xs:string"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="commonAttr"></xs:attributeGroup>
+		</xs:complexType>
+	</xs:element>
+	<xs:attributeGroup name="commonAttr">
+		<xs:attribute name="id" type="xs:string" />
+		<xs:attribute name="protocol">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:annotation>
+						<xs:documentation>
+							TCP|HTTP|HTTPS
+						</xs:documentation>
+					</xs:annotation>
+					<xs:pattern value="TCP|HTTP|HTTPS"></xs:pattern>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="sync" type="xs:boolean" default="false" />
+	</xs:attributeGroup>
+</xs:schema>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.pos.qhic.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:doPosRequest>
+         <!--Optional:-->
+         <arg0><![CDATA[<?xml version="1.0" encoding="UTF-8"?><RequestMessage><MessageContent><requsetUser>jlPos</requsetUser><userPsw>qhicJl</userPsw><transCode>400</transCode><reqTime>20161212141655</reqTime><Message><merchantId>849441357226977</merchantId><compCode>QHIC</compCode><terminalId>80287330</terminalId></Message></MessageContent><MAC>JVCuESFQKBDcXvUP95E2OiLHbhm8mPMU7E1cbCYr+zoo0zD0hQJLPYDcRjkKdtlRZt3gClCUL/dA
+O6XKyZqT26iak+GzkM3a08NkDPPFB93UxtcqC3+vfNXct5jDUAhfMUw+y2VMfmS+BqM5RSVpHkor
+AdQNRdtFgs2uLRkmXIWffzJk21aoG+hXXQnPMs5R2FKbb8IDTyYCDPO3cZliUDuyCPSo1FaGZc9/
+RdRHNhlLKUO4YX32uzmDCxNZhZFrFfpWe9dTWBMSMecKtcboBlG8GHf4cyGZ7QthXGG1K9YQTCbu
+AatN2k3/tIpRJ3bTuyI6Jh0izTRveIDxBoNnVA==</MAC></RequestMessage>]]></arg0>
+      </ser:doPosRequest>
+   </soapenv:Body>
+</soapenv:Envelope>

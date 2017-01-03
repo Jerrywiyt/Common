@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.w3school.com.cn" xsi:schemaLocation="http://www.w3school.com.cn ../process.xsd">
+	<channel id="15" protocol="" sync="true" >
+		<req>req</req>
+		<resp>resp</resp>
+	</channel>
+</root>

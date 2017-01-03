@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+       ">
+	<context:property-placeholder location="classpath:prop/hbase/phoenix.properties"
+		ignore-unresolvable="true" />
+	<context:component-scan base-package="com.xinguodu.trade.dao" />
+
+	<bean id="hbaseDataSource" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="${hbase.driver.class}" />
+		<property name="url" value="jdbc:phoenix:${hbase.jdbc.url}" />
+		<property name="username" value="" />
+		<property name="password" value="" />
+		<property name="initialSize" value="${hbase.init.size}" />
+		<property name="minIdle" value="${hbase.min.size}" />
+		<property name="maxActive" value="${hbase.max.size}" />
+		<property name="maxWait" value="${hbase.max.idle.time}" />
+		<property name="minEvictableIdleTimeMillis" value="${hbase.minEvictableIdleTimeMillis}" />
+		<property name="timeBetweenEvictionRunsMillis" value="${hbase.timeBetweenEvictionRunsMillis}" />
+		<property name="testWhileIdle" value="${hbase.testWhileIdle}" />
+		<property name="testOnBorrow" value="${hbase.testOnBorrow}" />
+		<property name="testOnReturn" value="${hbase.testOnReturn}" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxPoolPreparedStatementPerConnectionSize"
+			value="${hbase.maxPoolPreparedStatementPerConnectionSize}" />
+		<property name="queryTimeout" value="${hbase.queryTimeout}" />
+	</bean>
+
+	<bean id="hbaseJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg ref="hbaseDataSource" />
+		<qualifier value="hbaseJdbcTemplate"></qualifier>
+	</bean>
+
+</beans>

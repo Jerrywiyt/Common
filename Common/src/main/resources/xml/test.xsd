@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.w3school.com.cn" xmlns="http://www.w3school.com.cn"
+	elementFormDefault="qualified">
+	<!-- 基本元素 -->
+	<!-- 格式：标签名 标签类型 [默认值] [固定值] -->
+	<!-- 格式：<xs:element name="xxx" type="yyy" [default=""] [fixed=""] .. /> -->
+	<!-- 常用类型：xs:string xs:decimal xs:integer xs:boolean xs:date xs:time -->
+	<xs:element name="lastname" type="xs:string" />
+	<xs:element name="decimal" type="xs:decimal" />
+	<xs:element name="age" type="xs:integer" />
+	<xs:element name="isFalse" type="xs:boolean" />
+	<xs:element name="dateborn" type="xs:date" />
+	<xs:element name="datetime" type="xs:time" />
+	
+	<!-- 属性 -->
+	<!-- 属性本身作为基本类型被定义 -->
+	<!-- 格式：与基本元素类似 -->
+	<xs:attribute name="name" type="xs:string"></xs:attribute>
+	
+	<!-- 限定 -->
+	<!-- 可以设置在标签内，也可以设置标签外作为公共引用。 -->
+	<xs:element name="limitElement" type="names" />
+	<xs:simpleType name="names">
+		<xs:restriction base="xs:string" >
+			<xs:enumeration value="LJY"></xs:enumeration>
+			<xs:enumeration value="DS"></xs:enumeration>
+			<xs:enumeration value="GFS"></xs:enumeration>
+			<xs:enumeration value="BFM"></xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="patterns">
+		<xs:restriction base="xs:string">
+			<!-- 支持正则限定 -->
+			<xs:pattern value="[0-9]*"></xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<!-- 复合元素 -->
+	<!-- 仅含有元素 -->
+	<xs:element name="person" type="onlyHaveElements">
+	</xs:element>
+	<xs:complexType name="onlyHaveElements">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string"></xs:element>
+			<xs:element name="age" type="xs:int"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- 仅包含文本 -->
+	<xs:complexType name="onlyHaveText">
+		<xs:simpleContent>
+			<xs:extension base="xs:integer">
+				<xs:attribute name="id" type="xs:int"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	
+	<!-- 混合元素 -->
+	<xs:complexType name="mixed" mixed="true">
+		<xs:sequence>
+			<xs:element name="mixed" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- 指示器 -->
+	<!-- 有七种指示器：
+Order 指示器：用于限定子元素的出现方式。
+    All 所有元素必须出现，可以无序。
+    Choice 选择其中一个元素。
+    Sequence 必须按照顺序出现。
+Occurrence 指示器：元素出现次数的限定,默认情况下这两个值都是1。
+    maxOccurs 最大次数 如果不限制次数可以指定为  unbounded
+    minOccurs 最小次数
+Group 指示器：用于定义相关的数批元素
+    Group name
+    attributeGroup name
+	 -->
+	 <xs:element name="choice">
+	 	<xs:complexType>
+	 		<xs:choice>
+	 			<xs:element name="name" type="xs:string"></xs:element>
+	 			<xs:element name="age" type="xs:string"></xs:element>
+	 			<xs:element name="id" type="xs:string"></xs:element>
+	 		</xs:choice>
+	 	</xs:complexType>
+	 </xs:element>
+	 
+	 <!-- group -->
+	 <xs:element name="groupTest">
+	 	<xs:complexType>
+	 		<xs:group ref="elementsGroup"></xs:group>
+	 	</xs:complexType>
+	 </xs:element>
+	 <xs:group name="elementsGroup">
+	 	<xs:all>
+	 		<xs:element name="child1" type="xs:string"/>
+	 	</xs:all>
+	 </xs:group>
+	 <xs:attributeGroup name="attributeGroup">
+	 	<xs:attribute name="attr1" type="xs:string"/>
+	 </xs:attributeGroup>	 
+</xs:schema>
