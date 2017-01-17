@@ -8,11 +8,13 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import com.google.common.base.Preconditions;
 /**
- * 读取properties配置工具类。
+ * 需要改造。
  * @author lujunyu
- * 
+ *
  */
 public enum ConfigUtils {
+	//FIXME 需要重构，不搞成这种枚举的形式了。
+//只加载classpath下面的配置,需要搞清楚spring 和 linux下文件加载方式。然后设计一个通用的模板化设计。
 	CONFIG("prop/config.properties");
 	
 	private String path;
