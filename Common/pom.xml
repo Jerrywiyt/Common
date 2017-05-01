@@ -5,7 +5,7 @@
 	<artifactId>Common</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<properties>
-		<!-- 文件拷贝时的编码 ，所有的编码格式都指定为统一的保证不会出错。-->
+		<!-- 文件拷贝时的编码 ，所有的编码格式都指定为统一的保证不会出错。 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<!-- 编译时的编码 -->
@@ -34,5 +34,12 @@
 			<version>${junit}</version>
 		</dependency>
 		<!-- spring类库 -->
+		
+		<!-- log类库 -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
 	</dependencies>
 </project>
