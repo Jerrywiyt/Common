@@ -11,7 +11,7 @@
 		<!-- 编译时的编码 -->
 		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
 		<commons-lang>2.6</commons-lang>
-		<com.google.guava>20.0</com.google.guava>
+		<com.google.guava>21.0</com.google.guava>
 		<junit>4.12</junit>
 	</properties>
 	<dependencies>
@@ -35,105 +35,4 @@
 		</dependency>
 		<!-- spring类库 -->
 	</dependencies>
-
-
-
-
-
-
-
-
-
-
-
-
-	<build>
-		<sourceDirectory>src/main/java</sourceDirectory>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<targetPath>${project.build.directory}</targetPath>
-				<excludes>
-					<exclude>**/*.java</exclude>
-				</excludes>
-				<includes>
-					<include>**/*.properties</include>
-					<include>**/*.xml</include>
-					<include>**/*.txt</include>
-					<include>**/*.dtd</include>
-					<include>**/*.sh</include>
-					<include>**/*.cer</include>
-					<include>**/*.pfx</include>
-					<include>**/*.html</include>
-					<include>**/*.p12</include>
-					<include>**/*.jsp</include>
-					<include>**/*.js</include>
-					<include>**/*.xlsx</include>
-				</includes>
-				<filtering>true</filtering>
-			</resource>
-			<resource>
-				<directory>src/main/java</directory>
-				<includes>
-					<include>**/*.xml</include>
-					<include>**/*.IServiceLoader</include>
-					<include>**/*.class</include>
-				</includes>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>org.apache.maven.plugins</groupId>
-										<artifactId>maven-dependency-plugin</artifactId>
-										<versionRange>[2.0,)</versionRange>
-										<goals>
-											<goal>copy-dependencies</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore />
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<configuration>
-					<!-- 指定配置文件的编码格式 -->
-					<encoding>UTF-8</encoding>
-					<!-- 过滤证书文件 -->
-					<nonFilteredFileExtensions>
-						<nonFilteredFileExtension>cer</nonFilteredFileExtension>
-						<nonFilteredFileExtension>pfx</nonFilteredFileExtension>
-					</nonFilteredFileExtensions>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
-				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
-					<!-- 指定编译时的编码格式 -->
-					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project>
