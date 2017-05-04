@@ -52,9 +52,9 @@ public class TestCache {
 	private static LoadingCache<String,String> init() throws ExecutionException {
 		return CacheBuilder.newBuilder()
 				// 设置基于大小的回收策略。
-//				.maximumSize(1000l)
-			/*	.maximumWeight(100000l)
-				.weigher(new Weigher<String, String>() {
+				.maximumSize(1000l)
+			//	.maximumWeight(100000l)
+			/*	.weigher(new Weigher<String, String>() {
 					@Override
 					public int weigh(String key, String value) {
 						// TODO 可以指定每个value的重量，方便用来设置整个缓存的空间大小。
@@ -85,8 +85,8 @@ public class TestCache {
 
 					@Override
 					public String load(String key) throws Exception {
-						// TODO 可以自定实现一些缓存的加载策略。
-						return null;
+						log.info("load key :" + key);
+						return key;
 					}
 
 					@Override
