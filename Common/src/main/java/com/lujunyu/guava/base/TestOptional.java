@@ -1,4 +1,4 @@
-package com.lujunyu.guava.optional;
+package com.lujunyu.guava.base;
 
 import com.google.common.base.Optional;
 
