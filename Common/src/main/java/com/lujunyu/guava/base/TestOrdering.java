@@ -18,11 +18,12 @@ public class TestOrdering {
 		list.add("c");
 		list.add("a");
 		list.add("b");
-		
 		//排序list，并且进行copy
 		List<String> sortedList = order.sortedCopy(list);
 		System.out.println(list);
 		System.out.println(sortedList);
+		//自然排序比较器。
+		Ordering.natural();
 		
 		
 	}
