@@ -12,7 +12,6 @@
 		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
 		<commons-lang>2.6</commons-lang>
 		<com.google.guava>21.0</com.google.guava>
-		<junit>4.12</junit>
 	</properties>
 	<dependencies>
 		<!--工具类jar包 -->
@@ -25,13 +24,6 @@
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>${com.google.guava}</version>
-		</dependency>
-		<!-- 测试类库 -->
-		<!-- https://mvnrepository.com/artifact/junit/junit -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit}</version>
 		</dependency>
 		<!-- spring类库 -->
 
