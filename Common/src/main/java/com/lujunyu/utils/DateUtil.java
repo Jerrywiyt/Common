@@ -1,5 +1,6 @@
 package com.lujunyu.utils;
 
+import java.text.DateFormat;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -9,6 +10,7 @@ import org.apache.commons.lang.time.DateUtils;
 import org.apache.commons.lang.time.FastDateFormat;
 
 public final class DateUtil {
+	public static String YYYYMMDDHHMMSS = "yyyy-MM-dd HH:mm:ss";
 	private DateUtil(){}
 	/**
 	 * 判断两个日期是否是同一天。
@@ -31,6 +33,10 @@ public final class DateUtil {
 		return DateUtils.isSameInstant(date1, date2);
 	}
 	
+	public static String format(Date date,String pattern){
+		DateFormat format = new SimpleDateFormat(pattern);
+		return format.format(date);
+	}
 	public static void main(String[] args) {
 		Calendar c = Calendar.getInstance();
 		c.set(2015, 0, 30);
