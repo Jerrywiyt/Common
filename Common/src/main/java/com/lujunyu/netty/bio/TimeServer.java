@@ -33,7 +33,7 @@ public class TimeServer {
 			while(true){
 				s = server.accept();
 				InetAddress address = s.getInetAddress();
-				System.out.println(address.getHostAddress()+" ����");
+				System.out.println(address.getHostAddress());
 //				new Thread(new TimeServerHandler(s)).start();
 				executor.execute(new TimeServerHandler(s));
 			}

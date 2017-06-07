@@ -17,7 +17,7 @@ public class TimeClient {
 			s = new Socket("127.0.0.1", 9090);
 			br = new BufferedReader(new InputStreamReader(s.getInputStream()));
 			pw = new PrintWriter(s.getOutputStream(),true);
-			pw.println("commmand");
+			pw.println("QUERY TIME ORDER");
 			System.out.println("SEND SUCCESS");
 			String resp = br.readLine();
 			System.out.println("RESULT: "+resp);
