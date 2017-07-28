@@ -19,7 +19,8 @@ public class Test {
 
 			@Override
 			public TradeTransaction newInstance() {
-				return null;
+				TradeTransaction trade = new TradeTransaction(10l, 1000l);
+				return trade;
 			}
 		}, bufferSize ,new ThreadFactory() {
 			@Override
