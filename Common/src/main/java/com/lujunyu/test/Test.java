@@ -1,13 +1,17 @@
 package com.lujunyu.test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class Test {
+	static volatile long i = 0l;
 	public static void main(String[] args) {
-		List<?> list = new ArrayList<>();
-		List<? extends Object> l = new ArrayList<>();
-		System.out.println(88888^(88888>>>16));
+		long t1 = System.currentTimeMillis();
+		Object lock = new Object();
+		synchronized (lock) {
+			while (i < 1000000000l) {
+				i++;
+			}
+		}
+		long t2 = System.currentTimeMillis();
+		System.out.println(t2 - t1);
 	}
 }
