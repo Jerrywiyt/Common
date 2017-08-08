@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- monitorInterval:自动更新配置，monitorInterval="30"表示30秒检查一次。 -->
+<!-- status:日志系统自身的日志，status="DEBUG"表示日志系统自身的输出日志级别为debug。 -->
+<!-- packages:在指定目录下加载插件， 通常不指定。 -->
+<!-- 其它不常用参数详情见：http://logging.apache.org/log4j/2.x/manual/configuration.html -->
+<Configuration monitorInterval="30" status="TRACE" packages="com.ljy">
+	<Appenders>
+		<!-- 详情见：http://logging.apache.org/log4j/2.x/manual/appenders.html -->
+		<!-- 控制台输出，target默认就是SYSTEM_OUT -->
+		<!-- ignoreException: 是否忽略log4j本省的异常，默认为true -->
+		<Console name="Console" target="SYSTEM_OUT" ignoreException="true">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+		<!-- 文本输出 -->
+		<!-- append：是否追加文件。。 -->
+		<File name="MyFile" fileName="logs/app.log">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</File>
+		<!-- 滚动文件 -->
+		<!-- append -->
+		<!-- bufferedIO:默认为true，使用缓存，可以显著提高性能 -->
+		<!-- bufferSize：默认为8192bytes -->
+		<!-- fileName： -->
+		<!-- filePattern：滚动日志文件名 -->
+		<!-- immediateFlush:默认为true -->
+		<RollingFile name="rollingFile" fileName="logs/strategy/msgrecord.log" filePattern="logs/strategy/msgrecord-%d{yyyy-MM-dd}.log">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</RollingFile>
+		<!-- 比起RollingFileAppender，这个appender内部使用ByteBuffer+RandomAccessFile而不是BufferedOutputStream，速度要比前者快20-200%，所以推荐使用这个。-->	
+		<RollingRandomAccessFile name="rollingRandomAccessFile" fileName="logs/roll.log" filePattern="logs/roll-%d{yyyy-MM-dd-HH-mm}.log">
+			<PatternLayout  pattern="%d{MM-dd HH:mm:ss,SSS} [%t] %5p %c:%L - %m%n" />
+        	<Policies>
+				<!-- 间隔，具体单位需要考察。 -->
+				<!--   		
+            	<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            	-->
+            	<!-- 使用cron表达式，具体使用的使用利用网页上的工具生成cron表达式 -->
+            	<!-- evaluateOnStartup：表示启动的时候会检查文件的最后修改时间，判断文件是否应该rollover，默认是false，实际使用的时候需要指定这个参数。-->
+            	<CronTriggeringPolicy schedule="0 0/5 * * * ?" evaluateOnStartup="true"/>
+        	</Policies> 	
+		</RollingRandomAccessFile>
+		<!-- 异步appender 默认使用ArrayListBlockedQueue，这个使用的不是很多，就不去研究了。 -->
+		<Async name="Async">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="MyFile" />
+		</Async>
+		<!-- flume -->
+		<!--
+		<Flume name="eventLogger" compress="true">
+			<Agent host="192.168.10.101" port="8800" />
+			<Agent host="192.168.10.102" port="8800" />
+			<RFC5424Layout enterpriseNumber="18060" includeMDC="true" appName="MyApp" />
+		</Flume> -->
+	</Appenders>
+	<Loggers>
+		<Root level="INFO">
+			<AppenderRef ref="Console" />
+		</Root>
+		<!-- 自定义logger，additivity表示会不会将event传递给它的父类appenders，默认情况下为true，注意这个属性带有继承性。 -->
+		<Logger name="com.lujunyu.log" level="INFO" additivity="false">
+			<AppenderRef ref="rollingRandomAccessFile" />
+		</Logger>
+	</Loggers>
+</Configuration>
