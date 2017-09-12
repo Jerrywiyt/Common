@@ -3,7 +3,7 @@
 <!-- status:日志系统自身的日志，status="DEBUG"表示日志系统自身的输出日志级别为debug。 -->
 <!-- packages:在指定目录下加载插件， 通常不指定。 -->
 <!-- 其它不常用参数详情见：http://logging.apache.org/log4j/2.x/manual/configuration.html -->
-<Configuration monitorInterval="30" status="TRACE" packages="com.ljy">
+<Configuration monitorInterval="10" status="TRACE" packages="com.ljy">
 	<Appenders>
 		<!-- 详情见：http://logging.apache.org/log4j/2.x/manual/appenders.html -->
 		<!-- 控制台输出，target默认就是SYSTEM_OUT -->
@@ -23,9 +23,10 @@
 		<!-- fileName： -->
 		<!-- filePattern：滚动日志文件名 -->
 		<!-- immediateFlush:默认为true -->
-		<RollingFile name="rollingFile" fileName="logs/strategy/msgrecord.log" filePattern="logs/strategy/msgrecord-%d{yyyy-MM-dd}.log">
+<!-- 		<RollingFile name="rollingFile" fileName="logs/strategy/msgrecord.log" filePattern="logs/strategy/msgrecord-%d{yyyy-MM-dd}.log">
 			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
-		</RollingFile>
+		//TODO rollingFile报错
+		</RollingFile> -->
 		<!-- 比起RollingFileAppender，这个appender内部使用ByteBuffer+RandomAccessFile而不是BufferedOutputStream，速度要比前者快20-200%，所以推荐使用这个。-->	
 		<RollingRandomAccessFile name="rollingRandomAccessFile" fileName="logs/roll.log" filePattern="logs/roll-%d{yyyy-MM-dd-HH-mm}.log">
 			<PatternLayout  pattern="%d{MM-dd HH:mm:ss,SSS} [%t] %5p %c:%L - %m%n" />
@@ -57,7 +58,7 @@
 			<AppenderRef ref="Console" />
 		</Root>
 		<!-- 自定义logger，additivity表示会不会将event传递给它的父类appenders，默认情况下为true，注意这个属性带有继承性。 -->
-		<Logger name="com.lujunyu.log" level="INFO" additivity="false">
+		<Logger name="com.lujunyu.log" level="INFO" additivity="true">
 			<AppenderRef ref="rollingRandomAccessFile" />
 		</Logger>
 	</Loggers>
