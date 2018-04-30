@@ -3,7 +3,7 @@
 <!-- status:日志系统自身的日志，status="DEBUG"表示日志系统自身的输出日志级别为debug。 -->
 <!-- packages:在指定目录下加载插件， 通常不指定。 -->
 <!-- 其它不常用参数详情见：http://logging.apache.org/log4j/2.x/manual/configuration.html -->
-<Configuration monitorInterval="10" status="TRACE" packages="com.ljy">
+<Configuration monitorInterval="10" status="ERROR">
 	<Appenders>
 		<!-- 详情见：http://logging.apache.org/log4j/2.x/manual/appenders.html -->
 		<!-- 控制台输出，target默认就是SYSTEM_OUT -->

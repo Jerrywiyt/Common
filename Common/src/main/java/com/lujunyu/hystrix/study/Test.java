@@ -14,10 +14,17 @@ import rx.schedulers.Schedulers;
 
 public class Test {
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
-		String s = new CommandHelloWorld("world！").execute();
-		System.out.println(s);
-		Future<String> fs = new CommandHelloWorld("World").queue();
-		System.out.println(fs.get());
+		CommandHelloWorld command = new CommandHelloWorld("command1");
+		CommandHelloWorld1 command1 = new CommandHelloWorld1("command1");
+		
+		//同步
+//		System.out.println(command.execute());
+//		System.out.println(command1.toObservable().toBlocking().toFuture().get());
+		
+		//异步
+//		Future<String> fs = command.queue();
+//		System.out.println(fs.get());
+		
 		
 	}
 	private static class CommandHelloWorld extends HystrixCommand<String> {
