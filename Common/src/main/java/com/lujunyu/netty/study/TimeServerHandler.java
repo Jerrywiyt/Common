@@ -8,22 +8,19 @@ import io.netty.channel.ChannelHandlerContext;
 public class TimeServerHandler extends ChannelHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        ByteBuf byteBuf = (ByteBuf) msg;
-        byte[] req = new byte[byteBuf.readableBytes()];
-        byteBuf.readBytes(req);
-        String body = new String(req,"utf-8");
-        System.out.println("receive:"+body);
-        ByteBuf resp = Unpooled.copiedBuffer(String.valueOf(System.currentTimeMillis()).getBytes());
-        ctx.write(resp);
+        System.out.println("receive:"+msg);
+        ByteBuf resp = Unpooled.copiedBuffer(String.valueOf(System.currentTimeMillis()+"$").getBytes());
+        ctx.writeAndFlush(resp);
     }
 
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-        ctx.flush();
+        System.out.println("消息读取完毕");
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        cause.printStackTrace();
         ctx.close();
     }
 }

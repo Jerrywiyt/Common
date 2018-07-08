@@ -1,4 +1,6 @@
-package com.lujunyu.utils;
+package com.lujunyu.utils.excel;
+
+import com.lujunyu.utils.excel.Excel;
 
 /**
  * @author 58

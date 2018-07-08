@@ -6,17 +6,12 @@ import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
 
 public class TimeClientHandler extends ChannelHandlerAdapter {
-    private final ByteBuf firstMessage;
-
-    public TimeClientHandler(){
-        byte[] req = "query time".getBytes();
-        firstMessage = Unpooled.buffer(req.length);
-        firstMessage.writeBytes(req);
-    }
-
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        ctx.writeAndFlush(firstMessage);
+        for(int i=0;i<100;i++){
+            ByteBuf msg = Unpooled.copiedBuffer("lalla$".getBytes());
+            ctx.writeAndFlush(msg);
+        }
     }
 
     @Override

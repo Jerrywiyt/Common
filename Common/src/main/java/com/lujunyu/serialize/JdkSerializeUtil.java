@@ -1,20 +1,16 @@
-package com.lujunyu.utils;
+package com.lujunyu.serialize;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
+
 /**
  * 对象的序列化和反序列化操作
  * @author lujunyu
  *
  */
-public final class SerializeUtil {
-	private SerializeUtil(){}
+public final class JdkSerializeUtil {
+	private JdkSerializeUtil(){}
 	/**
 	 * 序列化操作
-	 * @param object
 	 * @return
 	 */
 	public static <T extends Serializable> byte[] serialize(T t) {
