@@ -13,6 +13,8 @@ import io.netty.handler.codec.DelimiterBasedFrameDecoder;
 import io.netty.handler.codec.FixedLengthFrameDecoder;
 import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
 
 public class TimeServer {
     public void bind(int port) throws InterruptedException {
@@ -20,7 +22,11 @@ public class TimeServer {
         EventLoopGroup work = new NioEventLoopGroup(128);
         try {
             ServerBootstrap b = new ServerBootstrap();
-            b.group(boss,work).channel(NioServerSocketChannel.class).option(ChannelOption.SO_BACKLOG,1024).childHandler(new ChildChannelHandler());
+            b.group(boss,work)
+                    .channel(NioServerSocketChannel.class)
+                    .option(ChannelOption.SO_BACKLOG,1024)
+                    .handler(new LoggingHandler(LogLevel.INFO))
+                    .childHandler(new ChildChannelHandler());
             ChannelFuture f = b.bind(port).sync();
             f.channel().closeFuture().sync();
         }finally {
