@@ -1,4 +1,4 @@
-package com.lujunyu.netty.http;
+package com.lujunyu.netty.protocol.http.fileserver;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -13,7 +13,7 @@ import io.netty.handler.codec.http.HttpResponseEncoder;
 import io.netty.handler.stream.ChunkedWriteHandler;
 
 public class HttpFileServer {
-    private static final String DEFAULT_URL = "/scr/com/";
+    private static final String DEFAULT_URL = "/";
     public void run(final int port,final String url)throws Exception{
         EventLoopGroup boss = new NioEventLoopGroup();
         EventLoopGroup work = new NioEventLoopGroup();

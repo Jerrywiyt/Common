@@ -1,4 +1,4 @@
-package com.lujunyu.netty.study;
+package com.lujunyu.netty.basic.netty;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

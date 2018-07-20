@@ -1,6 +1,5 @@
-package com.lujunyu.netty.nio.study;
+package com.lujunyu.netty.basic.nio;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
@@ -17,7 +16,7 @@ public class Study1 {
 	 * @throws Exception 
 	 */
 	private static void test3() throws Exception {
-		RandomAccessFile afile = new RandomAccessFile(Thread.currentThread().getContextClassLoader().getResource("com/lujunyu/netty/nio/study/nio.test").getFile(), "rw");
+		RandomAccessFile afile = new RandomAccessFile(Thread.currentThread().getContextClassLoader().getResource("com/lujunyu/netty/basic/nio/nio.test").getFile(), "rw");
 		FileChannel fileChannel = afile.getChannel();
 		ByteBuffer buff1 = ByteBuffer.allocate(10);
 		ByteBuffer buff2 = ByteBuffer.allocate(10);
@@ -86,7 +85,7 @@ public class Study1 {
 	}
 
 	private static void test1() throws IOException {
-		RandomAccessFile afile = new RandomAccessFile(Thread.currentThread().getContextClassLoader().getResource("com/lujunyu/netty/nio/study/nio.test").getFile(), "rw");
+		RandomAccessFile afile = new RandomAccessFile(Thread.currentThread().getContextClassLoader().getResource("com/lujunyu/netty/basic/nio/nio.test").getFile(), "rw");
 		FileChannel fileChannel = afile.getChannel();
 		ByteBuffer byteBuffer = ByteBuffer.allocate(10);
 		int len = fileChannel.read(byteBuffer);

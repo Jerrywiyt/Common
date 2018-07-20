@@ -1,4 +1,4 @@
-package com.lujunyu.xml;
+package com.lujunyu.xml.jaxb;
 
 import java.io.File;
 
