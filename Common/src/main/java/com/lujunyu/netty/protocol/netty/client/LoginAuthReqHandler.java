@@ -8,8 +8,8 @@ import io.netty.channel.ChannelHandlerContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class LoginAuthRepHandler extends ChannelHandlerAdapter {
-    private static Logger logger = LoggerFactory.getLogger(LoginAuthRepHandler.class);
+public class LoginAuthReqHandler extends ChannelHandlerAdapter {
+    private static Logger logger = LoggerFactory.getLogger(LoginAuthReqHandler.class);
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         ctx.writeAndFlush(budildLoginReq());
