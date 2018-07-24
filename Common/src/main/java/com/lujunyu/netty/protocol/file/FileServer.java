@@ -22,7 +22,7 @@ public class FileServer {
             ServerBootstrap b = new ServerBootstrap();
             b.group(boss,work)
                     .channel(NioServerSocketChannel.class)
-                    .option(ChannelOption.SO_BACKLOG,100).
+                    .option(ChannelOption.SO_BACKLOG,100)
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
