@@ -39,4 +39,10 @@ public class LoginAuthReqHandler extends ChannelHandlerAdapter {
         message.setHeader(header);
         return message;
     }
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        logger.error(cause.getMessage(),cause);
+        ctx.fireExceptionCaught(cause);
+    }
 }

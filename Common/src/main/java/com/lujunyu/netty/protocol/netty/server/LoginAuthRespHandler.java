@@ -7,6 +7,7 @@ import com.lujunyu.netty.protocol.netty.struct.Header;
 import com.lujunyu.netty.protocol.netty.struct.NettyMessage;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
+import lombok.extern.slf4j.Slf4j;
 
 import java.net.InetSocketAddress;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Slf4j
 public class LoginAuthRespHandler extends ChannelHandlerAdapter {
     private static Map<String,Boolean> onCheck = new ConcurrentHashMap<>();
     private static Set<String> ipList = Sets.newHashSet("127.0.0.1");
@@ -31,6 +33,7 @@ public class LoginAuthRespHandler extends ChannelHandlerAdapter {
             }else {
                 onCheck.put(ip,true);
                 resp = buildResp((byte)0);
+                log.info("客户端成功接入："+ctx.channel().remoteAddress().toString());
             }
             ctx.writeAndFlush(resp);
         }else {
