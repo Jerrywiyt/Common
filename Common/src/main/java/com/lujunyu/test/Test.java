@@ -1,45 +1,42 @@
 package com.lujunyu.test;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.sql.SQLException;
 
 public class Test {
-	private static Logger logger = LoggerFactory.getLogger(Test.class);
-	static volatile long i = 0l;
-	public static void main(String[] args) throws SQLException {
-		
-		
-		
-		
-		
-		//线程。
-		Executor executors = Executors.newFixedThreadPool(1000);
-		
-		
-		
-		
-		for(int i=0;i<1000;i++){
-			executors.execute(new Runnable() {
-				
-				@Override
-				public void run() {
-					try{
-						logger.info("开始执行");
-						Thread.sleep(2000l);
-						logger.info("执行结束");
-					}catch(Exception e){
-						
-					}
-				}
-			});
+	public static void main(String args[]) throws SQLException, ClassNotFoundException {
+		byte[] b = change("5b42acf317f8060854e00200007870000001d80b0b0a076");
+		System.out.println(new String(b));
+	}
+	private static byte[] change(String s) {
+		byte[] b = new byte[s.length()/2];
+		for (int i = 0; i < s.length(); i = i + 2) {
+			char h = s.charAt(i);
+			char l = s.charAt(i + 1);
+			b[i / 2] = (byte) (h << 4 + l);
 		}
-		
-		System.err.println("提交结束");
+		return b;
+	}
+
+	private static byte ch(char c) {
+		if (c == 'a') {
+			return 10;
+		}
+		if (c == 'b') {
+			return 11;
+		}
+		if (c == 'c') {
+			return 12;
+		}
+		if (c == 'd') {
+			return 13;
+		}
+		if (c == 'e') {
+			return 14;
+		}
+		if (c == 'f') {
+			return 15;
+		}
+		return Byte.parseByte(c + "");
 	}
 }
