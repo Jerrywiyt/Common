@@ -1,5 +1,7 @@
 package com.lujunyu.classloader;
 
+import org.apache.poi.ss.formula.functions.T;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -7,8 +9,14 @@ import java.io.InputStream;
 public class FileClassLoader extends ClassLoader{
     private String root;
     public FileClassLoader(String root){
+        this(root,ClassLoader.getSystemClassLoader());
+    }
+
+    public FileClassLoader(String root,ClassLoader parent){
+        super(parent);
         this.root = root;
     }
+
     @Override
     public Class<?> findClass(String name) throws ClassNotFoundException {
         String filepath = root + name.replace(".",File.separator) + ".class";
@@ -27,4 +35,16 @@ public class FileClassLoader extends ClassLoader{
 
         return null;
     }
+
+
+    public void test(String name){
+        System.out.println(findLoadedClass(name).getClassLoader().getClass().getName());
+    }
+
+
+    public Class<?> loadClass(String name) throws ClassNotFoundException {
+        System.out.println("load class");
+        return loadClass(name, false);
+    }
+
 }
