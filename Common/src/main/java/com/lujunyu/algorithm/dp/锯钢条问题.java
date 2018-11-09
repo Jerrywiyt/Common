@@ -5,7 +5,6 @@ package com.lujunyu.algorithm.dp;
  * 现求这根钢条最多能卖多少钱Rn。
  * Rn=max(p[i-1]+R(n-i))  1<=i<=n;
  *
- * https://blog.csdn.net/u013309870/article/details/75193592
  */
 public class 锯钢条问题 {
     public static void main(String args[]){
@@ -48,8 +47,7 @@ public class 锯钢条问题 {
         c[n-1] = r;
         return r;
     }
-    //自低向上方法。
-
+    //自底向上方法。
     public static int test3(int[] p){
         int[] c = new int[p.length+1];
         //外层循环是求r1到rn
