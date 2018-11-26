@@ -35,24 +35,27 @@ public class TestCache {
 	}
 
 	public static void main(String[] args) throws Exception{
-		String val = cache.get("key", new Callable<String>() {
-			@Override
-			public String call() throws Exception {
-				log.info("generate key");
-				// TODO 实现如果有则返回，没有则计算。
-				return "guava cache";
-			}
-		});
-		System.out.println(cache.get("key"));
-		System.out.println(val);
-		Thread.sleep(1000);
 		cache.get("key");
+		cache.get("key1");
+		cache.get("key2");
+		cache.get("key3");
+		cache.get("key4");
+		cache.get("key5");
+		cache.get("key6");
+		cache.get("key7");
+		cache.get("key8");
+		cache.get("key9");
+		cache.get("key10");
+		cache.get("key11");
+
+		cache.put("key12","key12");
+//		cache.cleanUp();
 	}
 
 	private static LoadingCache<String,String> init() throws ExecutionException {
 		return CacheBuilder.newBuilder()
 				// 设置基于大小的回收策略。
-				.maximumSize(1000l)
+				.maximumSize(10l)
 			//	.maximumWeight(100000l)
 			/*	.weigher(new Weigher<String, String>() {
 					@Override
@@ -62,7 +65,7 @@ public class TestCache {
 					}
 				})*/
 				// 设置基于时间的回收策略。
-				.expireAfterAccess(10l, TimeUnit.MILLISECONDS)
+				.expireAfterAccess(10000l, TimeUnit.MILLISECONDS)
 				.expireAfterWrite(10000, TimeUnit.MILLISECONDS)
 				// 设置基于引用的回收策略。
 				// .weakKeys()
