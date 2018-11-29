@@ -3,15 +3,14 @@ package com.lujunyu.guava.cache;
 import com.google.common.base.Optional;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
+import com.google.common.cache.CacheStats;
 import com.google.common.cache.LoadingCache;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListenableFutureTask;
 import com.lujunyu.threadpool.NamedThreadFactory;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * 使用此缓存一定要注意线程安全问题。
@@ -61,8 +60,13 @@ public abstract class AbstractCache<K,V> {
                 }
             });
 
-    protected abstract V loadCache(K k);
+    private static ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1,new NamedThreadFactory("缓存状态监控"));
 
+    public AbstractCache(){
+        scheduledExecutorService.scheduleAtFixedRate(this::monitor,60,60,TimeUnit.SECONDS);
+    }
+
+    protected abstract V loadCache(K k);
     protected abstract CacheConfig getConfig();
     /**
      * 获取缓存的对象。
@@ -88,12 +92,14 @@ public abstract class AbstractCache<K,V> {
         return null;
     }
 
+
     private void monitor(){
+        CacheStats stats = this.loadingCache.stats();
+        log.info("缓存名：{}，缓存数量：{}，缓存命中率：{}，缓存平均加载时间：{}ms，缓存淘汰总数：{},缓存加载成功数：{}，缓存加载失败率：{}",
+                this.getClass().getSimpleName(),this.loadingCache.size(),stats.hitRate()
+                ,TimeUnit.NANOSECONDS.toMillis((long)stats.averageLoadPenalty()),stats.evictionCount()
+                ,stats.loadSuccessCount(),stats.loadExceptionRate());
     }
-
-
-
-
 
     private static ThreadPoolExecutor getExecutor() {
         return new ThreadPoolExecutor(200,
@@ -141,7 +147,7 @@ public abstract class AbstractCache<K,V> {
                 }
             }
         });
-        monitorMyThreadPool.setName("缓存监控");
+        monitorMyThreadPool.setName("缓存线程池监控");
         monitorMyThreadPool.start();
     }
 }
