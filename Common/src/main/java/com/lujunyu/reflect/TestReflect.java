@@ -17,7 +17,7 @@ public class TestReflect {
                 System.out.println(c.getName());
             }
             for(Type type : types){
-                System.out.println(type.getTypeName());
+                System.out.println(type);
             }
 
         }
