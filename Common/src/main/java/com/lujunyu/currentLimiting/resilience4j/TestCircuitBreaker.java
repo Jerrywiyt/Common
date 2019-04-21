@@ -5,12 +5,15 @@ import io.github.resilience4j.circuitbreaker.CircuitBreaker;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerRegistry;
 import io.vavr.CheckedFunction0;
+import io.vavr.CheckedFunction1;
 import io.vavr.control.Try;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import java.util.concurrent.locks.LockSupport;
 
 @Slf4j
 public class TestCircuitBreaker {
@@ -121,6 +124,40 @@ public class TestCircuitBreaker {
     private static class Service {
         private String doSomething() throws Exception {
             return "hello world";
+        }
+    }
+
+    @Test
+    public void test(){
+        CircuitBreakerConfig config = CircuitBreakerConfig.custom()
+                .failureRateThreshold(50)
+                .waitDurationInOpenState(Duration.ofMillis(TimeUnit.SECONDS.toMillis(1)))
+                .ringBufferSizeInClosedState(10)
+                .ringBufferSizeInHalfOpenState(6)
+                .recordExceptions(Exception.class).build();
+        CircuitBreaker test = CircuitBreaker.of("test", config);
+        CheckedFunction1<Boolean,String> checkedFunction1 = CheckedFunction1.of((b)->new Service1().doSomething(b));
+        test.getEventPublisher().onEvent(event -> log.info(event.getEventType()+""));
+        for (int i=0;i<11;i++){
+            System.out.println(Try.of(()->CircuitBreaker.decorateCheckedFunction(test,checkedFunction1).apply(true)).recover(t->"方法降级").get());
+        }
+        LockSupport.parkNanos(TimeUnit.SECONDS.toNanos(2));
+        System.out.println(Try.of(()->CircuitBreaker.decorateCheckedFunction(test,checkedFunction1).apply(false)).recover(t->"方法降级").get());
+        System.out.println(Try.of(()->CircuitBreaker.decorateCheckedFunction(test,checkedFunction1).apply(false)).recover(t->"方法降级").get());
+        System.out.println(Try.of(()->CircuitBreaker.decorateCheckedFunction(test,checkedFunction1).apply(false)).recover(t->"方法降级").get());
+        System.out.println(Try.of(()->CircuitBreaker.decorateCheckedFunction(test,checkedFunction1).apply(true)).recover(t->"方法降级").get());
+        System.out.println(Try.of(()->CircuitBreaker.decorateCheckedFunction(test,checkedFunction1).apply(false)).recover(t->"方法降级").get());
+
+    }
+
+    private static class Service1{
+        public String doSomething(boolean b) throws Exception{
+            log.info("调用："+b);
+            if(b){
+                throw new Exception("faf");
+            }else{
+                return "hello world";
+            }
         }
     }
 }
