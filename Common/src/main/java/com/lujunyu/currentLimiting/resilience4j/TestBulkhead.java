@@ -6,8 +6,6 @@ import io.vavr.control.Try;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
-import java.time.Duration;
-
 @Slf4j
 public class TestBulkhead {
 
