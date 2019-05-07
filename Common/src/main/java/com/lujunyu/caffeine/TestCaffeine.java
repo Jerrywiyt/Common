@@ -24,33 +24,19 @@ public class TestCaffeine {
                 .expireAfterWrite(10, TimeUnit.MINUTES)
                 .maximumSize(10_000)
                 .build();
-        // Lookup an entry, or null if not found
-        String graph = cache.getIfPresent("test");
-        // Lookup and compute an entry if absent, or null if not computable
-        graph = cache.get("test", k -> createExpensiveGraph("test"));
-        // Insert or update an entry
-        cache.put("test", graph);
-        // Remove an entry
-        cache.invalidate("test");
+        cache.get("key", k -> createExpensiveGraph("key"));
     }
-
-    private String createExpensiveGraph(String key) {
-        return key;
-    }
-
+    /**
+     * Loading方式。
+     */
     @Test
     public void testLoading() {
         LoadingCache<String, String> cache = Caffeine.newBuilder()
                 .maximumSize(10_000)
                 .expireAfterWrite(10, TimeUnit.MINUTES)
-                .build(key -> createExpensiveGraph(key));
-
-        // Lookup and compute an entry if absent, or null if not computable
-        String graph = cache.get("test");
-        // Lookup and compute entries that are absent
-        Map<String, String> graphs = cache.getAll(Lists.newArrayList());
+                .build(this::createExpensiveGraph);
+        System.out.println(cache.get("key"));
     }
-
     /**
      * 提供了一种异步获取结果的方法。
      */
@@ -59,10 +45,13 @@ public class TestCaffeine {
         AsyncCache<String,String> cache = Caffeine.newBuilder()
                 .expireAfterWrite(10, TimeUnit.MINUTES)
                 .maximumSize(10_000)
-                .executor(Executors.newFixedThreadPool(1))
                 .buildAsync();
-
         CompletableFuture<String> graph = cache.get("test", k -> createExpensiveGraph("test"));
         System.out.println(graph.get());
+    }
+
+
+    private String createExpensiveGraph(String key) {
+        return key;
     }
 }
