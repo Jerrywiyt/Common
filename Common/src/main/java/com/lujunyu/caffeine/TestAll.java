@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.github.benmanes.caffeine.cache.*;
 import com.github.benmanes.caffeine.cache.stats.CacheStats;
 import lombok.extern.slf4j.Slf4j;
+import org.checkerframework.checker.index.qual.NonNegative;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.junit.Test;
@@ -42,6 +43,7 @@ public class TestAll {
         LockSupport.parkNanos(TimeUnit.SECONDS.toNanos(3));
         System.out.println(cache.get("test"));
         System.out.println(cache.get("test"));
+        LockSupport.park();
     }
 
     /**
@@ -143,5 +145,26 @@ public class TestAll {
 
     }
 
+    public void testAll(){
+        LoadingCache<String,String> cache = Caffeine.newBuilder()
+                //基于数量的配置
+                .maximumSize(1000)
+                //基于权重
+                .maximumWeight(1000)
+                //指定计算权重的方式
+                .weigher(this::caculateWeight)
+                //指定缓存在写入多久后失效。
+                .expireAfterWrite(1000,TimeUnit.SECONDS)
+                //指定缓存在访问多久后失效。
+                .expireAfterAccess(1000,TimeUnit.SECONDS)
+                .build(this::load);
+    }
 
+    private int caculateWeight(String s, String s2) {
+        return s2.length();
+    }
+
+    private String load(String s) {
+        return s;
+    }
 }
