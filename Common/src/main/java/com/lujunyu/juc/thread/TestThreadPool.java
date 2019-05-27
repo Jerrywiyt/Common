@@ -2,7 +2,7 @@ package com.lujunyu.juc.thread;
 
 import org.junit.Test;
 
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 import java.util.concurrent.locks.LockSupport;
 
 public class TestThreadPool {
@@ -26,12 +26,41 @@ public class TestThreadPool {
     }
 
     @Test
-    public void testFutureTask(){
-        Executors.newFixedThreadPool(1).submit(new Runnable() {
+    public void testFutureTask() throws ExecutionException, InterruptedException {
+        Future<String> future = Executors.newFixedThreadPool(1).submit(() -> {
+            LockSupport.park();
+            return "";
+        });
+
+        future.get();
+    }
+
+    @Test
+    public void testScheduledThreadPoolExecutor(){
+        ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
+        scheduledExecutorService.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
 
             }
-        });
+        },0L,60L,TimeUnit.SECONDS);
+    }
+
+
+    @Test
+    public void testThreadPool(){
+        Executor executor = new ThreadPoolExecutor(1,2,10,TimeUnit.MINUTES,new LinkedBlockingQueue<>());
+        executor.execute(new MyRunner());
+        executor.execute(()->System.out.println("start"));
+        executor.execute(new MyRunner());
+        executor.execute(new MyRunner());
+    }
+
+    private class MyRunner implements Runnable{
+
+        @Override
+        public void run() {
+            LockSupport.park();
+        }
     }
 }
