@@ -1,6 +1,5 @@
 package com.lujunyu.utils.excel;
 
-import com.lujunyu.utils.excel.Excel;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
