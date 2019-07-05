@@ -1,5 +1,9 @@
 package com.lujunyu.charset;
 
+import org.junit.Test;
+
+import java.io.UnsupportedEncodingException;
+
 /**
  * 总结几种编码的差别。
  * @author jerry
@@ -21,5 +25,31 @@ public class StudyCharSet {
 		//utf-16 无论是字符还是汉字都采用两个字节保存。
 		byte[] b4 = s.getBytes("utf-16");
 		System.out.println(CharSetUtil.toByteString(b4));
+	}
+
+
+	@Test
+	public void testUtf16() throws UnsupportedEncodingException {
+		String text = "\uD83D\uDE18";
+
+		System.out.println(text);
+		System.out.println(text.length());
+
+		System.out.println(CharSetUtil.toByteString(text.getBytes("utf-8")));
+		System.out.println(CharSetUtil.toByteString(text.getBytes("utf-16")));
+
+		//辅助平面字符的处理
+
+		//返回字符串中unicode码点的个数
+		System.out.println(text.codePointCount(0,text.length()));
+
+		//返回指定索引的码点
+		System.out.println(Character.codePointAt(text.toCharArray(),0));
+	}
+
+	@Test
+	public void test(){
+		System.out.println(Character.toChars(128536));
+		System.out.println("\uD83D\uDE18");
 	}
 }
