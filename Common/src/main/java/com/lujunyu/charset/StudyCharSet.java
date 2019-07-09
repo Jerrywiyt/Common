@@ -2,7 +2,7 @@ package com.lujunyu.charset;
 
 import org.junit.Test;
 
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 
 /**
  * 总结几种编码的差别。
@@ -51,5 +51,15 @@ public class StudyCharSet {
 	public void test(){
 		System.out.println(Character.toChars(128536));
 		System.out.println("\uD83D\uDE18");
+	}
+
+	@Test
+	public void testFile() throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(new File("D:\\Users\\lujunyu\\Desktop\\aaaa.txt")), "utf-8"));
+		String line = br.readLine();
+
+		char[] chars = line.toCharArray();
+
+		System.out.println(CharSetUtil.toByteString(line.getBytes("utf-8")));
 	}
 }

@@ -1,11 +1,13 @@
 package com.lujunyu.jvm.memory;
 
 import org.junit.Test;
+import sun.nio.ch.DirectBuffer;
 
 import java.lang.ref.PhantomReference;
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
+import java.nio.ByteBuffer;
 
 public class TestReference {
     @Test
@@ -66,5 +68,10 @@ public class TestReference {
                 System.out.println(o.hashCode());
             }
         }
+    }
+    
+    @Test
+    public void testDirectBuffer(){
+        ByteBuffer.allocateDirect(1024);
     }
 }
