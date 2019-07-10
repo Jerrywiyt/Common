@@ -1,4 +1,4 @@
-package com.lujunyu.jvm.memory;
+package com.lujunyu.jvm;
 
 import org.junit.Test;
 import sun.nio.ch.DirectBuffer;
