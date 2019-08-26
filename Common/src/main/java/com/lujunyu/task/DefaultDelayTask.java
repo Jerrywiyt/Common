@@ -1,10 +1,10 @@
 package com.lujunyu.task;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.Executor;
-
-import org.apache.log4j.Logger;
 
 /**
  * 采用时间轮的方式实现延时触发任务
@@ -12,8 +12,8 @@ import org.apache.log4j.Logger;
  * @author jerry
  *
  */
+@Slf4j
 public class DefaultDelayTask implements DelayTask {
-	private static Logger log = Logger.getLogger(DefaultDelayTask.class);
 
 	private volatile int curIndex;
 	private Set<Task>[] timeWheel;
@@ -87,7 +87,7 @@ public class DefaultDelayTask implements DelayTask {
 						temp[lastIndex] = new HashSet<Task>();
 					} catch (Exception e) {
 						//防止任务意外断掉。
-						log.error(e);
+						log.error(e.getMessage(),e);
 					}
 				}
 			}
