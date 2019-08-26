@@ -37,16 +37,16 @@
         <!-- spring类库 -->
 
         <!-- log类库，使用的时候使用slf4j，切换日志系统的时候切换桥接包就可以了 -->
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.15</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.25</version>
-        </dependency>
+        <!--        <dependency>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                    <version>1.2.15</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                    <version>1.7.25</version>
+                </dependency>-->
         <!-- log1 binding  -->
         <!--
         <dependency>
