@@ -1,4 +1,4 @@
-package com.lujunyu.random;
+package com.lujunyu.jvm.random;
 
 import org.apache.commons.codec.binary.Hex;
 import org.junit.Test;

@@ -15,9 +15,9 @@ public class TestRateLimiter {
     @Test
     public void test() throws InterruptedException {
         RateLimiter rateLimiter = RateLimiter.of("test",RateLimiterConfig.custom()
-                .limitForPeriod(1)
+                .limitForPeriod(2)
                 .limitRefreshPeriod(Duration.ofSeconds(1))
-                .timeoutDuration(Duration.ofMillis(500))
+                .timeoutDuration(Duration.ofMillis(1500))
                 .build());
         rateLimiter.getEventPublisher().onEvent(event -> log.info(event.toString()));
         //monitor
