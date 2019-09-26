@@ -1,4 +1,4 @@
-package com.lujunyu.algorithm.tree;
+package com.lujunyu.algorithm.struct.tree;
 
 import java.util.LinkedList;
 

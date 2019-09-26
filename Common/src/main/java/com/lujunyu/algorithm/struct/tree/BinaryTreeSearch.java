@@ -1,4 +1,4 @@
-package com.lujunyu.algorithm.tree;
+package com.lujunyu.algorithm.struct.tree;
 
 /**
  * 二叉查找树
