@@ -1,0 +1,26 @@
+@startuml
+autonumber
+actor A
+boundary B
+control C
+entity D
+database E
+participant "this is a self defined module" as F #9999FF
+activate A
+A ->o A : param \n validate.
+A -> B :request
+activate B
+B --[#blue]> C :judge
+activate C
+note right: 逻辑校验
+C -> D:transfer
+activate D
+D ->> E:save
+C <- D:result
+deactivate D
+B <- C:result
+deactivate C
+A <- B:response
+deactivate B
+deactivate A
+@endumla
