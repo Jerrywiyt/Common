@@ -1,3 +1,91 @@
 @startuml
-testdot
+|Swimlane1|
+start;
+/': input;
+if (condition) then (c1)
+: deal;
+elseif (c2)
+: deal;
+elseif (c3)
+: deal;
+else (c4)
+: deal;
+endif;
+repeat
+    : read data;
+    : generate data;
+repeat while (more data?)'/
+
+/'while循环'/
+/'while (check file size) is (not empty)
+: read file;
+end while (empty)'/
+
+/'#red:A;
+#blue:B;
+note right
+    this note is on several
+    //lines// and can
+    contain <b>HTML</b>
+end note'/
+
+/':A;
+-> you can input a data;
+if (check data) then (pass)
+:success;
+else (not pass)
+:fail;
+endif'/
+
+/'partition Init {
+    :read config file;
+    :init internal variable;
+}
+
+partition Running {
+    :wait for user interaction;
+    :print information;
+}'/
+
+/'
+:A;
+|Swimlane2|
+:B;
+|Swimlane1|
+:C;
+'/
+
+:Clickservlet.handleRequest();
+:new page();
+if (Page.onSecurityCheck) then (true)
+    :Page.onInit();
+    if(isForward?) then (no)
+    :Process controls;
+        if(continue processing?) then (no)
+            stop
+        endif
+        if(isPost?) then (yes)
+            :Page.onPost();
+        else (no)
+            :Page.onGet();
+        endif
+        :Page.onRender();
+    endif
+else (false)
+endif
+if( do redirect) then (yes)
+    :redirect process;
+else
+    if(do forward) then (yes)
+        :Forward request;
+    else
+        :Render page template;
+    endif
+endif
+
+
+
+
+
+stop
 @enduml
