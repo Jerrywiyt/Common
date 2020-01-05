@@ -3,6 +3,7 @@ package com.lujunyu.juice.binding;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
 import com.lujunyu.juice.start.BillService;
@@ -30,7 +31,9 @@ public class TestBinding {
     }
 
     /**
+     * 处理多态情况
      * 使用@BindingAnnotation和@Names可以指定不同的实现类。
+     * 具体方法是在依赖上指定对应的注解。
      */
     @Test
     public void testAnnotation() {
@@ -62,7 +65,7 @@ public class TestBinding {
     }
 
     /**
-     * 通过provider来提供依赖。
+     * 通过provider接口来提供依赖。
      */
     @Test
     public void testProviderBindings(){
@@ -74,6 +77,25 @@ public class TestBinding {
         }).getInstance(BillService.class);
         System.out.println(billService);
     }
+
+    /**
+     * 采用@Provides method 的方式提供依赖。
+     */
+    @Test
+    public void testProviderMethod(){
+        BillService billService = Guice.createInjector(new AbstractModule() {
+            @Override
+            protected void configure() {
+                super.configure();
+            }
+            @Provides
+            BillService provideBillService(){
+                return new BillService(null,null);
+            }
+        }).getInstance(BillService.class);
+    }
+
+
 
     /**
      * guice有两种方式实现单例，一种是下面这种，另一种通过Singleton修饰类。

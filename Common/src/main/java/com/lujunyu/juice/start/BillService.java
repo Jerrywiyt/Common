@@ -11,7 +11,7 @@ public class BillService {
     private TransactionLog transactionLog;
 
     @Inject
-    BillService(CreditCardProcessor processor,
+    public BillService(CreditCardProcessor processor,
                    TransactionLog transactionLog) {
         this.processor = processor;
         this.transactionLog = transactionLog;
