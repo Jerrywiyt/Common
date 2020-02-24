@@ -1,5 +1,6 @@
 package com.lujunyu.jdk;
 
+import java.time.Clock;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -8,11 +9,7 @@ import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalField;
-import java.time.temporal.TemporalUnit;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import org.junit.Test;
 
@@ -60,5 +57,12 @@ public class TestDate {
   @Test
   public void testFormat(){
     DateTimeFormatter.ofPattern("yyyy-mm-dd").format(LocalDateTime.now());
+  }
+
+  @Test
+  public void testClock(){
+    Clock clock = Clock.systemUTC();
+    System.out.println(clock.toString());
+    System.out.println(LocalDate.now(clock).format(DateTimeFormatter.ofPattern("yyyyMMdd")));
   }
 }
