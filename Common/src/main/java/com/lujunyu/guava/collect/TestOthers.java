@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableRangeMap;
 import com.google.common.collect.ImmutableRangeSet;
 import com.google.common.collect.MutableClassToInstanceMap;
 import com.google.common.collect.Range;
-import com.google.common.collect.RangeSet;
 import org.junit.Test;
 
 public class TestOthers {

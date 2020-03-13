@@ -33,8 +33,9 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>21.0</version>
+            <version>28.2-jre</version>
         </dependency>
+
         <!-- spring类库 -->
 
         <!-- log类库，使用的时候使用slf4j，切换日志系统的时候切换桥接包就可以了 -->

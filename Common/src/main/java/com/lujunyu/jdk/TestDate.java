@@ -9,7 +9,10 @@ import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAccessor;
+import java.time.temporal.TemporalField;
 import java.util.concurrent.TimeUnit;
 import org.junit.Test;
 
@@ -56,7 +59,9 @@ public class TestDate {
 
   @Test
   public void testFormat(){
-    DateTimeFormatter.ofPattern("yyyy-mm-dd").format(LocalDateTime.now());
+    DateTimeFormatter.ofPattern("yyyy-MM-dd").format(LocalDateTime.now());
+    LocalDate parse = LocalDate.parse("1992-03-05", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    System.out.println(parse);
   }
 
   @Test
