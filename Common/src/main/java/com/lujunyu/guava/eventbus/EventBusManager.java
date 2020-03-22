@@ -8,6 +8,7 @@ public class EventBusManager {
     EventBus eventBus = new EventBus();
     eventBus.register(new AListener());
     eventBus.register(new BListener());
+    eventBus.register(new CListener());
 
 
     eventBus.post(new EventA());
@@ -15,5 +16,6 @@ public class EventBusManager {
 
     //实践证明，继承类也能被识别成功。
     eventBus.post(new EventC());
+    eventBus.post("11");
   }
 }
