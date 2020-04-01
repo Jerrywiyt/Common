@@ -9,10 +9,7 @@ import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalAccessor;
-import java.time.temporal.TemporalField;
 import java.util.concurrent.TimeUnit;
 import org.junit.Test;
 
@@ -30,15 +27,19 @@ public class TestDate {
     long cur = now.toEpochMilli();
     // the day of begin
     now.truncatedTo(ChronoUnit.DAYS);
+    ZonedDateTime.of(LocalDateTime.now(), ZoneOffset.UTC);
     System.out.println(Duration.between(now, oneDayAgo).getSeconds());
   }
 
   /** LocalDate用于表示不区分时区的日期，该类不保存时间部分，比如用于保存生日。 */
+  @Test
   public void testLocalDate() {
     LocalDate now = LocalDate.now();
     LocalDate oneDayLater = now.plusDays(1);
     LocalDate.parse("2020-01-01");
     LocalDate.of(2010,10,1);
+    LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy"));
+    LocalDateTime.now().isAfter(LocalDateTime.now());
   }
 
   /**
@@ -47,6 +48,7 @@ public class TestDate {
   @Test
   public void testLocalDateTime(){
     LocalDateTime.of(2020,1,1,1,1,1);
+    LocalDateTime.now();
   }
 
   /**
@@ -54,7 +56,22 @@ public class TestDate {
    */
   @Test
   public void testZonedDateTime(){
-    ZonedDateTime.of(LocalDateTime.now(), ZoneOffset.UTC);
+    System.out.println(ZonedDateTime.now());
+    System.out.println(ZonedDateTime.now(ZoneId.of("America/Chicago")));
+
+    Clock clock = Clock.systemDefaultZone();
+    Clock clock1 = Clock.system(ZoneId.of("Europe/Paris"));
+
+    System.out.println(LocalDateTime.now(clock));
+    System.out.println(LocalDateTime.now(clock1));
+
+    LocalDateTime dateTime = LocalDateTime.of(2020, 3, 26, 0, 0, 0);
+
+    Instant instant = dateTime.toInstant(ZoneOffset.UTC);
+
+    ZonedDateTime zonedDateTime = ZonedDateTime.ofInstant(instant, ZoneId.of("Asia/Shanghai"));
+
+    System.out.println(zonedDateTime.toLocalDateTime());
   }
 
   @Test
@@ -68,6 +85,26 @@ public class TestDate {
   public void testClock(){
     Clock clock = Clock.systemUTC();
     System.out.println(clock.toString());
-    System.out.println(LocalDate.now(clock).format(DateTimeFormatter.ofPattern("yyyyMMdd")));
+    System.out.println(LocalDateTime.now(ZoneId.of("Asia/Shanghai")));
+  }
+
+  /**
+   * 不同时区的转换。
+   */
+  @Test
+  public void testTransferTimeZone(){
+    //输入时间，统一转为UTC时间进行存储：比如用户在东八区时区进行操作，保存时间。
+    LocalDateTime dateTime = LocalDateTime.of(2020, 3, 26, 8, 0, 0);
+
+    //将输入时间转换为UTC时间。
+    Instant utc = dateTime.toInstant(ZoneOffset.of("+8"));
+
+    //转换为LocalDateTime。
+    LocalDateTime localDateTime = LocalDateTime.ofInstant(utc, ZoneOffset.UTC);
+    System.out.println(localDateTime);
+
+    //转化为其它时区。
+    LocalDateTime localDateTime1 = LocalDateTime.ofInstant(utc, ZoneId.of("America/Phoenix"));
+    System.out.println(localDateTime1);
   }
 }
