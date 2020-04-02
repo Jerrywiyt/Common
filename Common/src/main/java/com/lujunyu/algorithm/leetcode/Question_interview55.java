@@ -3,6 +3,9 @@ package com.lujunyu.algorithm.leetcode;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 如何判断一个二叉树是否是平衡二叉树，二叉树的条件：任意一个节点的左右子树的高度差不超过1。
+ */
 public class Question_interview55 {
 
   public static void main(String[] args) {
@@ -15,6 +18,11 @@ public class Question_interview55 {
     System.out.println(isBalanced(root));
   }
 
+  /**
+   * 采用后序遍历的方式进行遍历二叉树。
+   * 采用备忘录法保存已计算的子树高度。
+   * 当求得左右两子树的高度后，进行判断他们的差是否大于1。
+   */
   public static boolean isBalanced(TreeNode root) {
     Map<TreeNode, Integer> cache = new HashMap<>();
     return !height(root, cache);
