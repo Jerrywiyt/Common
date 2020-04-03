@@ -1,8 +1,9 @@
 package com.lujunyu.algorithm.leetcode;
 
 import java.util.Arrays;
-import java.util.Comparator;
-
+/**
+ * 去掉重复的线段。A包含B，B就算是重复的。
+ */
 public class Question1288 {
     public static void main(String[] args) {
         System.out.println(test2(new int[][]{{1, 4}, {3, 6}, {2, 8}, {2, 10}}));
