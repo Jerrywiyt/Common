@@ -107,9 +107,12 @@ public class TestDate {
 
   @Test
   public void testTransferWithDate() throws ParseException {
+    //date 是有默认时区的，进行转换的时候需要注意。
     Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2020-04-10");
     Instant instant = date.toInstant();
     LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.of("UTC"));
     System.out.println(localDateTime);
+
+    System.out.println(new Date(0));
   }
 }
