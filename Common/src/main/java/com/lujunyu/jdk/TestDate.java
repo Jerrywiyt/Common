@@ -115,4 +115,14 @@ public class TestDate {
 
     System.out.println(new Date(0));
   }
+
+  /**
+   * 时间戳都是以UTC时间开始的。Date实际使用了默认的时区，date#getTime返回的是以UTC时间为基准的时间戳。
+   */
+  @Test
+  public void testTimestamp(){
+    System.out.println(new Date().getTime());
+    System.out.println(System.currentTimeMillis());
+    System.out.println(Instant.now(Clock.systemUTC()).toEpochMilli());
+  }
 }
