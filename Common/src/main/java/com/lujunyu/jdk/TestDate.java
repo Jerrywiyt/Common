@@ -83,8 +83,16 @@ public class TestDate {
   @Test
   public void testClock() {
     Clock clock = Clock.systemUTC();
-    System.out.println(clock.toString());
-    System.out.println(LocalDateTime.now(ZoneId.of("Asia/Shanghai")));
+    ZoneId zoneId = ZoneId.of("Asia/Shanghai");
+
+    System.out.println(LocalDateTime.now(clock));
+    System.out.println(LocalDateTime.now(clock.withZone(zoneId)));
+
+    System.out.println(Instant.now(clock));
+    System.out.println(Instant.now(clock.withZone(zoneId)));
+
+    System.out.println(
+        LocalDate.now(clock.withZone(zoneId)).atStartOfDay(clock.getZone()).toInstant());
   }
 
   /** 不同时区的转换。 */
@@ -107,7 +115,7 @@ public class TestDate {
 
   @Test
   public void testTransferWithDate() throws ParseException {
-    //date 是有默认时区的，进行转换的时候需要注意。
+    // date 是有默认时区的，进行转换的时候需要注意。
     Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2020-04-10");
     Instant instant = date.toInstant();
     LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.of("UTC"));
@@ -116,13 +124,11 @@ public class TestDate {
     System.out.println(new Date(0));
   }
 
-  /**
-   * 时间戳都是以UTC时间开始的。Date实际使用了默认的时区，date#getTime返回的是以UTC时间为基准的时间戳。
-   */
+  /** 时间戳都是以UTC时间开始的。Date实际使用了默认的时区，date#getTime返回的是以UTC时间为基准的时间戳。 */
   @Test
-  public void testTimestamp(){
+  public void testTimestamp() {
     System.out.println(new Date().getTime());
     System.out.println(System.currentTimeMillis());
-    System.out.println(Instant.now(Clock.systemUTC()).toEpochMilli());
+    System.out.println(Instant.now().toEpochMilli());
   }
 }
