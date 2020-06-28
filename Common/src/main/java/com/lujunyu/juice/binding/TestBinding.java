@@ -9,6 +9,7 @@ import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import com.google.inject.TypeLiteral;
 import com.google.inject.multibindings.Multibinder;
+import com.google.inject.name.Named;
 import com.google.inject.name.Names;
 import com.lujunyu.juice.start.BillService;
 import com.lujunyu.juice.start.TransactionLog;
@@ -127,10 +128,7 @@ public class TestBinding {
     System.out.println(injector.getInstance(BillService.class));
   }
 
-
-    /**
-     * 只能绑定Set，不能绑定List。
-     */
+  /** 只能绑定Set，不能绑定List。 */
   @Test
   public void testMultiBind() {
     Injector injector =
@@ -150,5 +148,25 @@ public class TestBinding {
             });
 
     System.out.println(injector.getInstance(Store.class).getList());
+  }
+
+  @Test
+  public void testNameAnnotation() {
+    Injector injector =
+        Guice.createInjector(
+            new AbstractModule() {
+              @Override
+              protected void configure() {}
+
+              @Named("TestNameAnnotation")
+              @Provides
+              public Apple provideApple() {
+                return new Apple();
+              }
+            });
+
+    TestNameAnnotation instance = injector.getInstance(TestNameAnnotation.class);
+
+    System.out.println(instance.getApple() != null);
   }
 }
