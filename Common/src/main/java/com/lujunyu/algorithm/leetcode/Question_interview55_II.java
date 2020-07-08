@@ -3,7 +3,7 @@ package com.lujunyu.algorithm.leetcode;
 import java.util.HashMap;
 import java.util.Map;
 
-/** 如何判断一个二叉树是否是平衡二叉树，二叉树的条件：任意一个节点的左右子树的高度差不超过1。 */
+/** 如何判断一个二叉树是否是平衡二叉树的条件：任意一个节点的左右子树的高度差不超过1。 */
 public class Question_interview55_II {
 
   public static void main(String[] args) {
