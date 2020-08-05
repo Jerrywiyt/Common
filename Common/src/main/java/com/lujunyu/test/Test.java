@@ -1,49 +1,18 @@
 package com.lujunyu.test;
 
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
-
 public class Test {
   public static void main(String args[]) {
-    System.out.println(Instant.MAX.toEpochMilli());
+    System.out.println(hammingWeight(11));
   }
 
-  private static void print(int n) {
-    List<String> res = getLine(n);
-    for (String line : res) {
-      System.out.println(line);
-    }
-  }
-
-  private static List<String> getLine(int n) {
-    if (n == 1) {
-      List<String> res = new ArrayList<>();
-      res.add("\\--/");
-      res.add(" \\/");
-      return res;
-    } else {
-      List<String> line1 = getLine(n - 1);
-      List<String> newLine = new ArrayList<>(line1.size() * 2);
-      // 第一层。
-      for (int i = 0; i < line1.size(); i++) {
-        newLine.add(line1.get(i) + getSpace(2 * i) + line1.get(i).trim());
+  public static int hammingWeight(int n) {
+    int res = 0;
+    for(int i=0;i<32;i++){
+      if((n&1)==1){
+        res++;
       }
-
-      // 第二层。
-      int base = line1.get(0).length() / 2;
-      for (int i = 0; i < line1.size(); i++) {
-        newLine.add(getSpace(base + i) + line1.get(i).trim());
-      }
-      return newLine;
+      n = n>>1;
     }
-  }
-
-  private static String getSpace(int n) {
-    StringBuilder res = new StringBuilder();
-    for (int i = 0; i < n; i++) {
-      res.append(" ");
-    }
-    return res.toString();
+    return res;
   }
 }
