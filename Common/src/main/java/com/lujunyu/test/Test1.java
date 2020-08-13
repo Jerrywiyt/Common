@@ -24,11 +24,11 @@ public class Test1 {
             "/Users/jerry_lu/Downloads/one_off_china_compliance_blackout_disable_calendar_on_demand.rb_runs_133459.txt",
             "/Users/jerry_lu/Downloads/one_off_china_compliance_blackout_disable_calendar_on_demand.rb_runs_133464.txt"),
         Lists.newArrayList(
-            "/Users/jerry_lu/Downloads/one_off_china_compliance_blackout_disable_calendar_on_demand.rb_runs_134484.txt"));
+            "/Users/jerry_lu/Downloads/one_off_china_compliance_blackout_disable_calendar_on_demand.rb_runs_135325.txt"));
 
     difference(
-        Lists.newArrayList("/Users/jerry_lu/Downloads/2020-8-4.txt"),
-        Lists.newArrayList("/Users/jerry_lu/Downloads/2020-8-5.txt"));
+        Lists.newArrayList("/Users/jerry_lu/Downloads/2020-8-10.txt"),
+        Lists.newArrayList("/Users/jerry_lu/Downloads/2020-8-11.txt"));
   }
 
   public static void difference(List<String> before, List<String> after) throws IOException {
@@ -46,7 +46,7 @@ public class Test1 {
 
     Collections.sort(lines);
 
-    File file = new File("/Users/jerry_lu/Downloads/diff-8-5.txt");
+    File file = new File("/Users/jerry_lu/Downloads/diff-8-11.txt");
     BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
     for (String line : lines) {
       bufferedWriter.write(line);
@@ -99,7 +99,7 @@ public class Test1 {
 
       Collections.sort(listings);
 
-      File file = new File("/Users/jerry_lu/Downloads/2020-8-5.txt");
+      File file = new File("/Users/jerry_lu/Downloads/2020-8-11.txt");
       BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
       for (String line : listings) {
         bufferedWriter.write(line);
