@@ -9,24 +9,18 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Test2 {
 
   public static void main(String[] args) throws IOException {
-    Set<String> send = Sets.newHashSet(read("/Users/jerry_lu/Downloads/send"));
-    List<String> list =
-        read("/Users/jerry_lu/Downloads/sqllab_untitled_query_2_20200810T051543.csv");
-    List<String> res = Lists.newArrayList();
-    res.add(list.get(0));
-    for (String line : list) {
-      String[] split = line.split(",");
-      if (send.contains(split[0])) {
-        res.add(line);
-      }
-    }
-    write(res, "/Users/jerry_lu/Downloads/second.csv");
+    List<String> all = read("/Users/jerry_lu/Downloads/nanjing_survey.csv");
+    List<String> has = read("/Users/jerry_lu/Downloads/aa.csv");
+
+    HashSet<String> set = Sets.newHashSet(all);
+    System.out.println(set.size());
+
   }
 
   private static void write(List<String> lines, String file) throws IOException {
