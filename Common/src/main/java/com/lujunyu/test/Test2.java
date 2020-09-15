@@ -1,7 +1,6 @@
 package com.lujunyu.test;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -9,18 +8,24 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 public class Test2 {
 
   public static void main(String[] args) throws IOException {
-    List<String> all = read("/Users/jerry_lu/Downloads/nanjing_survey.csv");
-    List<String> has = read("/Users/jerry_lu/Downloads/aa.csv");
+    List<String> all =
+        read("/Users/jerry_lu/Downloads/sqllab_untitled_query_3_20200914T034411.csv");
+    List<String> all1 = read("/Users/jerry_lu/Downloads/listing_id.csv");
 
-    HashSet<String> set = Sets.newHashSet(all);
-    System.out.println(set.size());
+    List<String> has = Lists.newArrayList();
 
+    for (String line : all) {
+      if (all1.contains(line.split(",")[1])) {
+        has.add(line);
+      }
+    }
+
+    write(has, "/Users/jerry_lu/Downloads/tttttt.csv");
   }
 
   private static void write(List<String> lines, String file) throws IOException {

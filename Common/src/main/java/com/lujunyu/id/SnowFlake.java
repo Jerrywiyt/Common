@@ -26,6 +26,7 @@ public class SnowFlake implements IDGenerator {
      */
     public synchronized long nextId() {
         long currStmp = getNewstmp();
+        //发生时钟回拨问题，直接跑错。
         if (currStmp < lastStamp) {
             throw new RuntimeException("Clock moved backwards.  Refusing to generate id");
         }

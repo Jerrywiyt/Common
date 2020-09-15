@@ -21,14 +21,13 @@ public class Test1 {
   public static void main(String args[]) throws IOException {
     parse(
         Lists.newArrayList(
-            "/Users/jerry_lu/Downloads/one_off_china_compliance_blackout_disable_calendar_on_demand.rb_runs_133459.txt",
-            "/Users/jerry_lu/Downloads/one_off_china_compliance_blackout_disable_calendar_on_demand.rb_runs_133464.txt"),
+            "/Users/jerry_lu/Downloads/one_off_china_compliance_blackout_disable_calendar_on_demand.rb_runs_138183.txt"),
         Lists.newArrayList(
-            "/Users/jerry_lu/Downloads/one_off_china_compliance_blackout_disable_calendar_on_demand.rb_runs_136122.txt"));
+            "/Users/jerry_lu/Downloads/one_off_china_compliance_blackout_disable_calendar_on_demand.rb_runs_140025.txt"));
 
     difference(
-        Lists.newArrayList("/Users/jerry_lu/Downloads/2020-8-11.txt"),
-        Lists.newArrayList("/Users/jerry_lu/Downloads/2020-8-17.txt"));
+        Lists.newArrayList("/Users/jerry_lu/Downloads/2020-9-7.txt"),
+        Lists.newArrayList("/Users/jerry_lu/Downloads/2020-9-14.txt"));
   }
 
   public static void difference(List<String> before, List<String> after) throws IOException {
@@ -46,7 +45,7 @@ public class Test1 {
 
     Collections.sort(lines);
 
-    File file = new File("/Users/jerry_lu/Downloads/diff-8-17.txt");
+    File file = new File("/Users/jerry_lu/Downloads/diff-9-14.txt");
     BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
     for (String line : lines) {
       bufferedWriter.write(line);
@@ -80,11 +79,8 @@ public class Test1 {
     // 交集。
     Map<String, Set<String>> intersection = intersection(beforeM, afterM);
 
-    System.out.println(beforeM.size());
-    System.out.println(beforeM.values().stream().filter(s -> s.size() > 0).count());
-    System.out.println(afterM.size());
-    System.out.println(afterM.values().stream().filter(s -> s.size() > 0).count());
-    System.out.println(intersection.values().stream().filter(s -> s.size() > 0).count());
+    System.out.println("总打开量：" + afterM.values().stream().filter(s -> s.size() > 0).count());
+    System.out.println("屏蔽后打开：" + intersection.values().stream().filter(s -> s.size() > 0).count());
     print(intersection);
   }
 
@@ -99,7 +95,7 @@ public class Test1 {
 
       Collections.sort(listings);
 
-      File file = new File("/Users/jerry_lu/Downloads/2020-8-17.txt");
+      File file = new File("/Users/jerry_lu/Downloads/2020-9-14.txt");
       BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
       for (String line : listings) {
         bufferedWriter.write(line);

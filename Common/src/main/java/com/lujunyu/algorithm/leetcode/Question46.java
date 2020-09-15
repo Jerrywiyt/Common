@@ -1,12 +1,15 @@
 package com.lujunyu.algorithm.leetcode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /** 给定一个 没有重复 数字的序列，返回其所有可能的全排列。 */
 public class Question46 {
@@ -132,6 +135,33 @@ public class Question46 {
         Collections.swap(param, offset, i);
         dfs(param, res, offset + 1);
         Collections.swap(param, i, offset);
+      }
+    }
+  }
+
+  static class Solution3 {
+
+    public List<List<Integer>> permute(int[] nums) {
+      List<List<Integer>> res = new ArrayList<>();
+      if (nums.length == 0) {
+        return res;
+      }
+      List<Integer> ints = Arrays.stream(nums).boxed().collect(Collectors.toList());
+
+      dfs(ints,res,new ArrayList<Integer>());
+      return res;
+    }
+
+    private void dfs(List<Integer> ints, List<List<Integer>> res, ArrayList<Integer> cur) {
+      if(ints.size()==0){
+        res.add(new ArrayList<>(cur));
+      }
+      for (int i = 0; i <ints.size(); i++) {
+        cur.add(ints.get(i));
+        ArrayList<Integer> integers1 = new ArrayList<>(ints);
+        integers1.remove(i);
+        dfs(integers1,res,cur);
+        cur.remove(cur.size()-1);
       }
     }
   }

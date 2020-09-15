@@ -28,13 +28,13 @@ public class HeadlessWatermarkService {
 
   public static void main(String[] args) throws IOException {
 
-    File srcImgFile = new File("/Users/jerry_lu/Desktop/a.jpg");
+    File srcImgFile = new File("/Users/jerry_lu/Desktop/aaa.jpg");
 
     File outputRotateImageFile = new File("/Users/jerry_lu/Desktop/22.png");
 
     Image srcImg = ImageIO.read(srcImgFile);
 
-    Color color = new Color(0x33000000, true);
+    Color color = new Color(0x12000000, true);
     String text = "仅限于入住人信息备案";
 
     Image png = new HeadlessWatermarkService().execute(srcImg, text, color, "png");
@@ -70,18 +70,6 @@ public class HeadlessWatermarkService {
     */
     GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
     assert ge != null;
-  }
-
-  private static float alpha(Color color) {
-    switch (color.getTransparency()) {
-      case Transparency.BITMASK:
-        return 1.0f;
-      case Transparency.TRANSLUCENT:
-        return color.getAlpha() / 255.0f;
-      case Transparency.OPAQUE:
-      default:
-        return 0.3f;
-    }
   }
 
   private Image execute(Image image, String text, Color color, String format) throws IOException {
