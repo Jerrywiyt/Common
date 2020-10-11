@@ -1,6 +1,7 @@
 package com.lujunyu.test;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -9,23 +10,41 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class Test2 {
-
   public static void main(String[] args) throws IOException {
-    List<String> all =
-        read("/Users/jerry_lu/Downloads/sqllab_untitled_query_3_20200914T034411.csv");
-    List<String> all1 = read("/Users/jerry_lu/Downloads/listing_id.csv");
+    Map<String, Set<String>> before =
+        Test1.parse(
+            "/Users/jerry_lu/Downloads/one_off_china_compliance_blackout_disable_calendar_on_demand.rb_runs_138183.txt");
 
-    List<String> has = Lists.newArrayList();
+    Set<String> success = Sets.newHashSet();
+    before.entrySet().stream()
+        .forEach(
+            stringSetEntry -> {
+              if (stringSetEntry.getValue().size() > 0) {
+                success.add(stringSetEntry.getKey());
+              }
+            });
 
-    for (String line : all) {
-      if (all1.contains(line.split(",")[1])) {
-        has.add(line);
+    System.out.println(success.size());
+
+    List<String> read =
+        read("/Users/jerry_lu/Downloads/bejing-08-softblackout-listings - 九月继续屏蔽的房源.csv");
+    List<String> open = read("/Users/jerry_lu/Downloads/2020-9-21.txt");
+
+    List<String> result = Lists.newArrayList();
+
+    result.add(read.get(0));
+    for (int i = 1; i < read.size(); i++) {
+      String s = read.get(i);
+      if (!success.contains(s.split(",")[0])) {
+        result.add(s);
       }
     }
 
-    write(has, "/Users/jerry_lu/Downloads/tttttt.csv");
+    write(result, "/Users/jerry_lu/Downloads/0923-listing.csv");
   }
 
   private static void write(List<String> lines, String file) throws IOException {

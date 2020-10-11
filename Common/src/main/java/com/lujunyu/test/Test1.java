@@ -21,13 +21,18 @@ public class Test1 {
   public static void main(String args[]) throws IOException {
     parse(
         Lists.newArrayList(
-            "/Users/jerry_lu/Downloads/one_off_china_compliance_blackout_disable_calendar_on_demand.rb_runs_138183.txt"),
+            "/Users/jerry_lu/Downloads/one_off_china_compliance_blackout_disable_calendar_on_demand.rb_runs_141365.txt",
+            "/Users/jerry_lu/Downloads/one_off_china_compliance_blackout_disable_calendar_on_demand.rb_runs_141368.txt",
+            "/Users/jerry_lu/Downloads/one_off_china_compliance_blackout_disable_calendar_on_demand.rb_runs_141374.txt",
+            "/Users/jerry_lu/Downloads/one_off_china_compliance_blackout_disable_calendar_on_demand.rb_runs_141503.txt",
+            "/Users/jerry_lu/Downloads/one_off_china_compliance_blackout_disable_calendar_on_demand.rb_runs_141373.txt"),
         Lists.newArrayList(
-            "/Users/jerry_lu/Downloads/one_off_china_compliance_blackout_disable_calendar_on_demand.rb_runs_140025.txt"));
+            "/Users/jerry_lu/Downloads/one_off_china_compliance_blackout_disable_calendar_on_demand.rb_runs_141933.txt",
+            "/Users/jerry_lu/Downloads/one_off_china_compliance_blackout_disable_calendar_on_demand.rb_runs_141938.txt"));
 
     difference(
-        Lists.newArrayList("/Users/jerry_lu/Downloads/2020-9-7.txt"),
-        Lists.newArrayList("/Users/jerry_lu/Downloads/2020-9-14.txt"));
+        Lists.newArrayList("/Users/jerry_lu/Downloads/2020-9-25.txt"),
+        Lists.newArrayList("/Users/jerry_lu/Downloads/2020-9-28.txt"));
   }
 
   public static void difference(List<String> before, List<String> after) throws IOException {
@@ -45,7 +50,7 @@ public class Test1 {
 
     Collections.sort(lines);
 
-    File file = new File("/Users/jerry_lu/Downloads/diff-9-14.txt");
+    File file = new File("/Users/jerry_lu/Downloads/diff-9-28.txt");
     BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
     for (String line : lines) {
       bufferedWriter.write(line);
@@ -79,8 +84,15 @@ public class Test1 {
     // 交集。
     Map<String, Set<String>> intersection = intersection(beforeM, afterM);
 
+    System.out.println("屏蔽总量：" + beforeM.size());
+    System.out.println("屏蔽成功总量：" + beforeM.values().stream().filter(s -> s.size() > 0).count());
     System.out.println("总打开量：" + afterM.values().stream().filter(s -> s.size() > 0).count());
     System.out.println("屏蔽后打开：" + intersection.values().stream().filter(s -> s.size() > 0).count());
+
+    System.out.println(
+        afterM.entrySet().stream()
+            .filter(s -> s.getValue().size() > 0)
+            .collect(Collectors.toList()));
     print(intersection);
   }
 
@@ -95,7 +107,7 @@ public class Test1 {
 
       Collections.sort(listings);
 
-      File file = new File("/Users/jerry_lu/Downloads/2020-9-14.txt");
+      File file = new File("/Users/jerry_lu/Downloads/2020-9-28.txt");
       BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
       for (String line : listings) {
         bufferedWriter.write(line);
@@ -135,7 +147,7 @@ public class Test1 {
     return map;
   }
 
-  private static Map<String, Set<String>> parse(String fileName) {
+  public static Map<String, Set<String>> parse(String fileName) {
     try {
       BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(fileName)));
       String line;
