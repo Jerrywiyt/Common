@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
 
+/** TODO 需要重新进行整理，整理为统一的风格，方便以后复习。 */
 public class ListTree {
 
   public static void main(String[] args) {
@@ -196,5 +197,57 @@ public class ListTree {
     }
 
     return result;
+  }
+
+  /** 按照层次输出树。 */
+  public static List<List<Integer>> listEveryLayer1(TreeNode root) {
+    if (root == null) {
+      return Collections.emptyList();
+    }
+    List<List<Integer>> res = new ArrayList<>();
+    dfs(root, 0, res);
+    return res;
+  }
+
+  // 利用DFS实现层序遍历要比BFS效率高。
+  private static void dfs(TreeNode root, int level, List<List<Integer>> res) {
+    if (root == null) {
+      return;
+    }
+    if (level == res.size()) {
+      res.add(new ArrayList<>());
+    }
+    res.get(level).add(root.val);
+    dfs(root.left, level + 1, res);
+    dfs(root.right, level + 1, res);
+  }
+
+  /** 使用队列实现遍历输出树的每一层。 */
+  public List<List<Integer>> listEveryLayer2(TreeNode root) {
+    if (root == null) {
+      return Collections.emptyList();
+    }
+    List<List<Integer>> res = new ArrayList<>();
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.add(root);
+    while (!queue.isEmpty()) {
+      int index = 0;
+      int size = queue.size();
+      List<Integer> temp = new ArrayList<Integer>();
+      while (index++ < size) {
+        TreeNode cur = queue.poll();
+        temp.add(cur.val);
+        if (cur.left != null) queue.add(cur.left);
+        if (cur.right != null) queue.add(cur.right);
+      }
+      res.add(temp);
+    }
+    return res;
+  }
+
+  private static class TreeNode {
+    TreeNode left;
+    TreeNode right;
+    int val;
   }
 }
