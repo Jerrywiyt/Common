@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Question15 {
   public static void main(String[] args) {
-    System.out.println(new Solution().threeSum(new int[]{-1,0,1,0}));
+    System.out.println(new Solution().threeSum(new int[] {-1, 0, 1, 0}));
   }
 
   static class Solution {

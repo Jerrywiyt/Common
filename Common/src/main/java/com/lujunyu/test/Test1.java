@@ -27,12 +27,12 @@ public class Test1 {
             "/Users/jerry_lu/Downloads/one_off_china_compliance_blackout_disable_calendar_on_demand.rb_runs_141503.txt",
             "/Users/jerry_lu/Downloads/one_off_china_compliance_blackout_disable_calendar_on_demand.rb_runs_141373.txt"),
         Lists.newArrayList(
-            "/Users/jerry_lu/Downloads/one_off_china_compliance_blackout_disable_calendar_on_demand.rb_runs_141933.txt",
-            "/Users/jerry_lu/Downloads/one_off_china_compliance_blackout_disable_calendar_on_demand.rb_runs_141938.txt"));
+            "/Users/jerry_lu/Downloads/one_off_china_compliance_blackout_disable_calendar_on_demand.rb_runs_144604.txt",
+            "/Users/jerry_lu/Downloads/one_off_china_compliance_blackout_disable_calendar_on_demand.rb_runs_144603.txt"));
 
     difference(
-        Lists.newArrayList("/Users/jerry_lu/Downloads/2020-9-25.txt"),
-        Lists.newArrayList("/Users/jerry_lu/Downloads/2020-9-28.txt"));
+        Lists.newArrayList("/Users/jerry_lu/Downloads/2020-9-28.txt"),
+        Lists.newArrayList("/Users/jerry_lu/Downloads/2020-10-18.txt"));
   }
 
   public static void difference(List<String> before, List<String> after) throws IOException {
@@ -50,7 +50,7 @@ public class Test1 {
 
     Collections.sort(lines);
 
-    File file = new File("/Users/jerry_lu/Downloads/diff-9-28.txt");
+    File file = new File("/Users/jerry_lu/Downloads/diff-10-18.txt");
     BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
     for (String line : lines) {
       bufferedWriter.write(line);
@@ -107,7 +107,7 @@ public class Test1 {
 
       Collections.sort(listings);
 
-      File file = new File("/Users/jerry_lu/Downloads/2020-9-28.txt");
+      File file = new File("/Users/jerry_lu/Downloads/2020-10-18.txt");
       BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
       for (String line : listings) {
         bufferedWriter.write(line);

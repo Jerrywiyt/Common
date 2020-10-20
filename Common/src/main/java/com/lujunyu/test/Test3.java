@@ -20,20 +20,20 @@ import java.util.Set;
 
 public class Test3 {
   public static void main(String[] args) throws IOException {
-    Map<String, Set<String>> parse = parse("/Users/jerry_lu/Downloads/one_off_china_compliance_blackout_disable_calendar_on_demand.rb_runs_138183.txt");
+    Map<String, Set<String>> parse =
+        parse(
+            "/Users/jerry_lu/Downloads/one_off_china_compliance_blackout_disable_calendar_on_demand.rb_runs_138183.txt");
 
     int cnt = 0;
 
-    for(Map.Entry<String,Set<String>> entry: parse.entrySet()){
-      if(entry.getValue().size()>0){
+    for (Map.Entry<String, Set<String>> entry : parse.entrySet()) {
+      if (entry.getValue().size() > 0) {
         System.out.println(entry.getKey());
         cnt++;
       }
     }
 
     System.out.println(cnt);
-
-
   }
 
   private static void diff() throws IOException {

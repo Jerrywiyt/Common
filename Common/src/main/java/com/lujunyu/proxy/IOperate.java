@@ -1,5 +1,5 @@
 package com.lujunyu.proxy;
 
 public interface IOperate {
-    void print(String arg);
+  void print(String arg);
 }

@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
-//@AllArgsConstructor(onConstructor = @__(@Inject))
+// @AllArgsConstructor(onConstructor = @__(@Inject))
 public class TestNameAnnotation {
   @Inject
   @Named("TestNameAnnotation")

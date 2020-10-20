@@ -105,12 +105,10 @@ public class Question46 {
   /**
    * 通过交换，减少status变量.
    *
-   * 因为全排列的思路是，首先找到第一个位置，所有元素都有可能。
-   * 然后第二个位置，需要排除第一个，从剩余的元素中寻找，
-   * 第三个，排除前两个，从剩余的元素中寻找。
+   * <p>因为全排列的思路是，首先找到第一个位置，所有元素都有可能。 然后第二个位置，需要排除第一个，从剩余的元素中寻找， 第三个，排除前两个，从剩余的元素中寻找。
    *
-   * 通过交换的方式，我们不需要额外的状态用于保存哪些元素没有被使用，使代码更加的优雅。
-   * */
+   * <p>通过交换的方式，我们不需要额外的状态用于保存哪些元素没有被使用，使代码更加的优雅。
+   */
   static class Solution2 {
 
     public List<List<Integer>> permute(int[] nums) {
@@ -148,20 +146,20 @@ public class Question46 {
       }
       List<Integer> ints = Arrays.stream(nums).boxed().collect(Collectors.toList());
 
-      dfs(ints,res,new ArrayList<Integer>());
+      dfs(ints, res, new ArrayList<Integer>());
       return res;
     }
 
     private void dfs(List<Integer> ints, List<List<Integer>> res, ArrayList<Integer> cur) {
-      if(ints.size()==0){
+      if (ints.size() == 0) {
         res.add(new ArrayList<>(cur));
       }
-      for (int i = 0; i <ints.size(); i++) {
+      for (int i = 0; i < ints.size(); i++) {
         cur.add(ints.get(i));
         ArrayList<Integer> integers1 = new ArrayList<>(ints);
         integers1.remove(i);
-        dfs(integers1,res,cur);
-        cur.remove(cur.size()-1);
+        dfs(integers1, res, cur);
+        cur.remove(cur.size() - 1);
       }
     }
   }

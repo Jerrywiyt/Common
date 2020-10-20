@@ -25,7 +25,16 @@ import java.util.Queue;
 public class Question1162 {
 
   public static void main(String[] args) {
-    int res = new Solution4().maxDistance(new int[][] {{0,0,1,1,1},{0,1,1,0,0},{0,0,1,1,0},{1,0,0,0,0},{1,1,0,0,1}});
+    int res =
+        new Solution4()
+            .maxDistance(
+                new int[][] {
+                  {0, 0, 1, 1, 1},
+                  {0, 1, 1, 0, 0},
+                  {0, 0, 1, 1, 0},
+                  {1, 0, 0, 0, 0},
+                  {1, 1, 0, 0, 1}
+                });
     System.out.println(res);
   }
 
@@ -229,7 +238,7 @@ public class Question1162 {
           if (grid[i][j] == 1) {
             f[i][j] = 0;
           } else {
-            f[i][j] = Integer.MAX_VALUE-1;
+            f[i][j] = Integer.MAX_VALUE - 1;
           }
         }
       }
@@ -263,7 +272,7 @@ public class Question1162 {
 
       for (int[] ints : f) {
         for (int j = 0; j < grid.length; j++) {
-          if (ints[j] != 0 && ints[j] != Integer.MAX_VALUE-1) {
+          if (ints[j] != 0 && ints[j] != Integer.MAX_VALUE - 1) {
             if (ints[j] > max) {
               max = ints[j];
             }

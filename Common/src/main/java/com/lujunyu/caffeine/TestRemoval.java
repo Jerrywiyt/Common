@@ -7,14 +7,15 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.junit.Test;
 
 public class TestRemoval {
-    @Test
-    public void test(){
-        @NonNull Cache<String, String> cache = Caffeine.newBuilder()
-                .maximumSize(100)
-                .removalListener(
-                        (String key, String graph, RemovalCause cause) ->
-                                System.out.printf("Key %s was removed (%s)%n", key, cause)
-                )
-                .build();
-    }
+  @Test
+  public void test() {
+    @NonNull
+    Cache<String, String> cache =
+        Caffeine.newBuilder()
+            .maximumSize(100)
+            .removalListener(
+                (String key, String graph, RemovalCause cause) ->
+                    System.out.printf("Key %s was removed (%s)%n", key, cause))
+            .build();
+  }
 }

@@ -1,5 +1,3 @@
 package com.lujunyu.mockito;
 
-public class Service {
-
-}
+public class Service {}

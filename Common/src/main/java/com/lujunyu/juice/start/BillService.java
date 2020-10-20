@@ -7,23 +7,25 @@ import lombok.ToString;
 
 @ToString
 public class BillService {
-    private CreditCardProcessor processor;
-    private TransactionLog transactionLog;
+  private CreditCardProcessor processor;
+  private TransactionLog transactionLog;
 
-    @Inject
-    public BillService(CreditCardProcessor processor,
-                   TransactionLog transactionLog) {
-        this.processor = processor;
-        this.transactionLog = transactionLog;
-    }
+  @Inject
+  public BillService(CreditCardProcessor processor, TransactionLog transactionLog) {
+    this.processor = processor;
+    this.transactionLog = transactionLog;
+  }
 
-    public static void main(String args[]){
-        BillService service = Guice.createInjector(new AbstractModule() {
-            @Override
-            protected void configure() {
-                super.configure();
-            }
-        }).getInstance(BillService.class);
-        System.out.println(service);
-    }
+  public static void main(String args[]) {
+    BillService service =
+        Guice.createInjector(
+                new AbstractModule() {
+                  @Override
+                  protected void configure() {
+                    super.configure();
+                  }
+                })
+            .getInstance(BillService.class);
+    System.out.println(service);
+  }
 }

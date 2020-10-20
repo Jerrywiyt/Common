@@ -2,7 +2,7 @@ package com.lujunyu.algorithm.leetcode;
 
 public class Question43 {
   public static void main(String[] args) {
-    System.out.println(new Solution().multiply("123","456"));
+    System.out.println(new Solution().multiply("123", "456"));
   }
 
   static class Solution {

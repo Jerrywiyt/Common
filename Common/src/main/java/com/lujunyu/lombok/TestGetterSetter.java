@@ -5,11 +5,9 @@ import lombok.Setter;
 
 public class TestGetterSetter {
 
-  /**
-   * @NonNUll 可以和@Setter @Data等配合使用
-   */
+  /** @NonNUll 可以和@Setter @Data等配合使用 */
   @Setter
-  public static class A{
+  public static class A {
     @NonNull String name;
   }
 

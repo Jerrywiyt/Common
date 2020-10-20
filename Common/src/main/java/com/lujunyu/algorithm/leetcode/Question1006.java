@@ -17,7 +17,7 @@ public class Question1006 {
       }
       a = N;
       while (a - 2 > 0) {
-        int temp = a * (a - 1) /(a - 2);
+        int temp = a * (a - 1) / (a - 2);
         if (a == N) {
           res += temp;
         } else {

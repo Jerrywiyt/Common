@@ -4,7 +4,6 @@ import lombok.Data;
 
 @Data
 public class NettyMessage {
-    private Header header;
-    private Object body;
-
+  private Header header;
+  private Object body;
 }

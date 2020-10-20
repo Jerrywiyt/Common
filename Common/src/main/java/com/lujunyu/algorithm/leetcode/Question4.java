@@ -1,4 +1,3 @@
 package com.lujunyu.algorithm.leetcode;
 
-public class Question4 {
-}
+public class Question4 {}

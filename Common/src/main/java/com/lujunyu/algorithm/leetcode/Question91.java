@@ -23,9 +23,9 @@ public class Question91 {
       if (s.length() == 1) {
         return 1;
       }
-      if(Integer.parseInt(s.substring(0,2))<=26){
+      if (Integer.parseInt(s.substring(0, 2)) <= 26) {
         return numDecodings(s.substring(1)) + numDecodings(s.substring(2));
-      }else {
+      } else {
         return numDecodings(s.substring(1));
       }
     }

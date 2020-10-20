@@ -21,7 +21,7 @@ public class BitUtil {
     return sb.reverse().toString();
   }
 
-  public static String toBitString(int input){
+  public static String toBitString(int input) {
     StringBuilder sb = new StringBuilder();
     for (int i = 0; i < 32; i++) {
       sb.append(input & 1);

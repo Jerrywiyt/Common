@@ -9,21 +9,20 @@ import java.nio.channels.SocketChannel;
 import java.util.Set;
 
 public class TestSelector {
-    /**
-     */
-    @Test
-    public void test() throws IOException {
-        Selector selector = Selector.open();
-        SocketChannel channel = SocketChannel.open();
-        channel.configureBlocking(false);
-        SelectionKey selectionKey = channel.register(selector, SelectionKey.OP_CONNECT | SelectionKey.OP_ACCEPT);
-        selectionKey.attachment();
+  /** */
+  @Test
+  public void test() throws IOException {
+    Selector selector = Selector.open();
+    SocketChannel channel = SocketChannel.open();
+    channel.configureBlocking(false);
+    SelectionKey selectionKey =
+        channel.register(selector, SelectionKey.OP_CONNECT | SelectionKey.OP_ACCEPT);
+    selectionKey.attachment();
 
-        selector.select();
+    selector.select();
 
-        Set<SelectionKey> selectionKeys = selector.selectedKeys();
+    Set<SelectionKey> selectionKeys = selector.selectedKeys();
 
-        selector.wakeup();
-    }
-
+    selector.wakeup();
+  }
 }

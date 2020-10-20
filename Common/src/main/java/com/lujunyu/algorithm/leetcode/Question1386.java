@@ -3,7 +3,9 @@ package com.lujunyu.algorithm.leetcode;
 public class Question1386 {
   public static void main(String[] args) {
 
-    System.out.println(new Solution().maxNumberOfFamilies(3,new int[][] {{1,2},{1,3},{1,8},{2,6},{3,1},{3,10}}));
+    System.out.println(
+        new Solution()
+            .maxNumberOfFamilies(3, new int[][] {{1, 2}, {1, 3}, {1, 8}, {2, 6}, {3, 1}, {3, 10}}));
   }
 
   static class Solution {

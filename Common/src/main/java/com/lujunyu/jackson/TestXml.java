@@ -33,7 +33,7 @@ public class TestXml {
                                     new JSONObject()
                                         .put("SERVICE_CODE", "0103w4")
                                         .put("SERVICE_NAME", "网约房人员住宿信息"))))
-            .put("SIGNATURE", "500D008A9505146915952A6B53BBD5982E219C50"));
+                    .put("SIGNATURE", "500D008A9505146915952A6B53BBD5982E219C50"));
 
     System.out.println(XML.toString(object));
   }

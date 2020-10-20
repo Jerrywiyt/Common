@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Question679 {
   public static void main(String[] args) {
-    new Question679().new Solution().judgePoint24(new int[]{1,2,3,4});
+    new Question679().new Solution().judgePoint24(new int[] {1, 2, 3, 4});
   }
 
   class Solution {

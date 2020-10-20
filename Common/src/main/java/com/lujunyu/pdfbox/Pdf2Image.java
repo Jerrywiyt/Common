@@ -12,23 +12,22 @@ public class Pdf2Image {
 
   @Test
   public void test() throws IOException {
-    //Loading an existing PDF document
+    // Loading an existing PDF document
     File file = new File("/Users/jerry_lu/Downloads/API Gateway (Kraken) Design Doc.pdf");
     PDDocument document = PDDocument.load(file);
 
-    //Instantiating the PDFRenderer class
+    // Instantiating the PDFRenderer class
     PDFRenderer renderer = new PDFRenderer(document);
 
-    //Rendering an image from the PDF document
+    // Rendering an image from the PDF document
     BufferedImage image = renderer.renderImage(0);
 
-    //Writing the image to a file
+    // Writing the image to a file
     ImageIO.write(image, "JPEG", new File("/Users/jerry_lu/Downloads/test-test-test.jpg"));
 
     System.out.println("Image created");
 
-    //Closing the document
+    // Closing the document
     document.close();
-
   }
 }

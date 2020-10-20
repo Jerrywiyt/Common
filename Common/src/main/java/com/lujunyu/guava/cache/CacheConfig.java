@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 class CacheConfig {
-    private long expireAfterWrite = 60L;
-    private long refreshAfterWrite = 60L;
-    private long maximumSize = 10000L;
-    private boolean isCacheNull = true;
+  private long expireAfterWrite = 60L;
+  private long refreshAfterWrite = 60L;
+  private long maximumSize = 10000L;
+  private boolean isCacheNull = true;
 }

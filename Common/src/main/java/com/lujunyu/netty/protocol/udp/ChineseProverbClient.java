@@ -13,24 +13,29 @@ import io.netty.util.CharsetUtil;
 import java.net.InetSocketAddress;
 
 public class ChineseProverbClient {
-    public void run(int port)throws Exception{
-        EventLoopGroup group = new NioEventLoopGroup();
-        try{
-            Bootstrap b = new Bootstrap();
-            b.group(group).channel(NioDatagramChannel.class)
-                    .option(ChannelOption.SO_BROADCAST,true)
-                    .handler(new ChineseProverbClientHandler());
-            Channel ch = b.bind(0).sync().channel();
-            ch.writeAndFlush(new DatagramPacket(Unpooled.copiedBuffer("lala",CharsetUtil.UTF_8),new InetSocketAddress("255.255.255.255",port))).sync();
-            if(!ch.closeFuture().await(15000)){
-                System.out.println("查询超时");
-            }
-        }finally {
-            group.shutdownGracefully();
-        }
+  public void run(int port) throws Exception {
+    EventLoopGroup group = new NioEventLoopGroup();
+    try {
+      Bootstrap b = new Bootstrap();
+      b.group(group)
+          .channel(NioDatagramChannel.class)
+          .option(ChannelOption.SO_BROADCAST, true)
+          .handler(new ChineseProverbClientHandler());
+      Channel ch = b.bind(0).sync().channel();
+      ch.writeAndFlush(
+              new DatagramPacket(
+                  Unpooled.copiedBuffer("lala", CharsetUtil.UTF_8),
+                  new InetSocketAddress("255.255.255.255", port)))
+          .sync();
+      if (!ch.closeFuture().await(15000)) {
+        System.out.println("查询超时");
+      }
+    } finally {
+      group.shutdownGracefully();
     }
+  }
 
-    public static void main(String args[]) throws Exception {
-        new ChineseProverbClient().run(8080);
-    }
+  public static void main(String args[]) throws Exception {
+    new ChineseProverbClient().run(8080);
+  }
 }

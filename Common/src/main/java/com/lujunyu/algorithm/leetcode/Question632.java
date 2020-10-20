@@ -21,9 +21,8 @@ public class Question632 {
       int start = 0;
       int end = 0;
 
-      for(Pair pair : list){
+      for (Pair pair : list) {}
 
-      }
       return null;
     }
 

@@ -14,7 +14,7 @@ public class TestNonNull {
   }
 
   private void test1(@NonNull String param) {
-//    Preconditions.checkNotNull(param);
-//    Objects.requireNonNull(param);
+    //    Preconditions.checkNotNull(param);
+    //    Objects.requireNonNull(param);
   }
 }

@@ -10,11 +10,10 @@ public class EventBusManager {
     eventBus.register(new BListener());
     eventBus.register(new CListener());
 
-
     eventBus.post(new EventA());
     eventBus.post(new EventB());
 
-    //实践证明，继承类也能被识别成功。
+    // 实践证明，继承类也能被识别成功。
     eventBus.post(new EventC());
     eventBus.post("11");
   }

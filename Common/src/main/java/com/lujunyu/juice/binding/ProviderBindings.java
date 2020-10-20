@@ -5,10 +5,9 @@ import com.lujunyu.juice.start.TransactionLogImpl;
 
 import javax.inject.Provider;
 
-
 public class ProviderBindings implements Provider<TransactionLog> {
-    @Override
-    public TransactionLog get() {
-        return new TransactionLogImpl();
-    }
+  @Override
+  public TransactionLog get() {
+    return new TransactionLogImpl();
+  }
 }

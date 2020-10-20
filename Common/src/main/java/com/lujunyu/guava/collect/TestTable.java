@@ -10,32 +10,30 @@ import org.junit.Test;
  *
  * <p>相当于Map<K1,Map<K2,V>>
  *
- * HashBasedTable -> HashMap<K1,HashMap<K2,V>>
+ * <p>HashBasedTable -> HashMap<K1,HashMap<K2,V>>
  *
- * TreeBasedTable -> TreeMap<K1,TreeMap<k2,V>>
+ * <p>TreeBasedTable -> TreeMap<K1,TreeMap<k2,V>>
  *
- * ImmutableTable
+ * <p>ImmutableTable
  *
- * ArrayTable
- *
+ * <p>ArrayTable
  */
 public class TestTable {
 
   @Test
   public void testHashMap() {
     HashBasedTable<String, String, String> basedTable = HashBasedTable.create();
-    basedTable.put("1","2","3");
+    basedTable.put("1", "2", "3");
     System.out.println(basedTable);
-    System.out.println(basedTable.get("1","2"));
+    System.out.println(basedTable.get("1", "2"));
   }
 
-  /**
-   * 采用二位数组维护的table
-   */
+  /** 采用二位数组维护的table */
   @Test
-  public void testArrayTable(){
-    ArrayTable<Integer, Integer, Object> table = ArrayTable.create(Lists.newArrayList(1, 2, 3), Lists.newArrayList(1, 2, 3));
-    table.set(0,0,"111");
+  public void testArrayTable() {
+    ArrayTable<Integer, Integer, Object> table =
+        ArrayTable.create(Lists.newArrayList(1, 2, 3), Lists.newArrayList(1, 2, 3));
+    table.set(0, 0, "111");
     System.out.println(table);
   }
 }

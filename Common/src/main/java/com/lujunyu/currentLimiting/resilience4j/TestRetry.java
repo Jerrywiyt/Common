@@ -9,24 +9,26 @@ import java.time.Duration;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class TestRetry {
-    @Test
-    public void test(){
-        RetryConfig config = RetryConfig.custom()
-                .maxAttempts(2)
-                .waitDuration(Duration.ofMillis(100)).build();
+  @Test
+  public void test() {
+    RetryConfig config =
+        RetryConfig.custom().maxAttempts(2).waitDuration(Duration.ofMillis(100)).build();
 
-        Retry test = Retry.of("test", config);
+    Retry test = Retry.of("test", config);
 
-        System.out.println(Try.of(Retry.decorateCheckedSupplier(test,new Service()::get)).recover(Throwable::getMessage).get() );
+    System.out.println(
+        Try.of(Retry.decorateCheckedSupplier(test, new Service()::get))
+            .recover(Throwable::getMessage)
+            .get());
+  }
+
+  private static class Service {
+    public String get() throws Exception {
+      System.out.println("diaoyong");
+      if (ThreadLocalRandom.current().nextInt(6) % 2 == 0) {
+        throw new Exception("fail");
+      }
+      return "hello world";
     }
-
-    private static class Service{
-        public String get() throws Exception {
-            System.out.println("diaoyong");
-            if(ThreadLocalRandom.current().nextInt(6)%2==0){
-                throw new Exception("fail");
-            }
-            return "hello world";
-        }
-    }
+  }
 }

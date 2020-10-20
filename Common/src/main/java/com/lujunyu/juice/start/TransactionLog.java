@@ -1,4 +1,3 @@
 package com.lujunyu.juice.start;
 
-public class TransactionLog {
-}
+public class TransactionLog {}

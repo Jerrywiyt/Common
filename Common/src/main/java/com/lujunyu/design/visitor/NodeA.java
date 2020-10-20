@@ -1,13 +1,13 @@
 package com.lujunyu.design.visitor;
 
-public class NodeA implements Node{
+public class NodeA implements Node {
 
-	@Override
-	public void accept(Visitor visitor) {
-		visitor.visitor(this);
-	}
+  @Override
+  public void accept(Visitor visitor) {
+    visitor.visitor(this);
+  }
 
-	public String toString(){
-		return "nodeA";
-	}
+  public String toString() {
+    return "nodeA";
+  }
 }

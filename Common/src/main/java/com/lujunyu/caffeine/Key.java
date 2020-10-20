@@ -1,4 +1,3 @@
 package com.lujunyu.caffeine;
 
-public class Key {
-}
+public class Key {}

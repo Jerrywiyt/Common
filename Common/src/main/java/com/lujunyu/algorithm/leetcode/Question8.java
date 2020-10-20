@@ -26,7 +26,7 @@ public class Question8 {
     System.out.println(myAtoi("  +04324234132311fffa"));
     System.out.println(myAtoi("  00fafdag1"));
     System.out.println(myAtoi("  001"));
-    System.out.println(myAtoi(Integer.MIN_VALUE+""));
+    System.out.println(myAtoi(Integer.MIN_VALUE + ""));
     System.out.println(Integer.MIN_VALUE);
   }
 

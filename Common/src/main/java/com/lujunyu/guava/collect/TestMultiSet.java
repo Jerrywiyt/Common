@@ -8,12 +8,10 @@ import org.junit.Test;
 /**
  * 此接口在原有的Set基础上增加了为每个元素进行计数的功能。
  *
- * 相当于Set<Map<K,Integer>>结构。
+ * <p>相当于Set<Map<K,Integer>>结构。
  */
 public class TestMultiSet {
-  /**
-   * 包含的实现。
-   */
+  /** 包含的实现。 */
   @Test
   public void test() {
     // HashMultiSet
@@ -31,7 +29,7 @@ public class TestMultiSet {
     hashMultiset.add("1");
     hashMultiset.add("1");
     hashMultiset.add("1");
-    hashMultiset.add("2",1);
+    hashMultiset.add("2", 1);
     // size方法返回总数。
     assertEquals(6, hashMultiset.size());
     // size返回元素的数量。

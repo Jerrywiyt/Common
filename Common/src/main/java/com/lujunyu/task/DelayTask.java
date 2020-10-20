@@ -1,9 +1,9 @@
 package com.lujunyu.task;
 /**
  * 延时任务
- * @author jerry
  *
+ * @author jerry
  */
 public interface DelayTask {
-	void addTask(Task t);
+  void addTask(Task t);
 }

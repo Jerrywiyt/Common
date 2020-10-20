@@ -4,39 +4,40 @@ import java.util.LinkedList;
 
 public class Question20 {
 
-    public static void main(String[] args){
-        System.out.println(isValid("()[{}]"));
-        System.out.println(isValid("({}[)]"));
+  public static void main(String[] args) {
+    System.out.println(isValid("()[{}]"));
+    System.out.println(isValid("({}[)]"));
+  }
+
+  public static boolean isValid(String s) {
+    if (s == null) {
+      return false;
     }
-    public static boolean isValid(String s) {
-        if(s==null){
+    char[] arr = s.toCharArray();
+    LinkedList<Character> stack = new LinkedList<>();
+    for (char c : arr) {
+      switch (c) {
+        case '(':
+        case '{':
+        case '[':
+          stack.push(c);
+          break;
+        case ')':
+          if (stack.size() == 0 || '(' != stack.pop()) {
             return false;
-        }
-        char[] arr = s.toCharArray();
-        LinkedList<Character> stack = new LinkedList<>();
-        for(char c: arr){
-            switch (c){
-                case '(':
-                case '{':
-                case '[':
-                    stack.push(c);
-                    break;
-                case ')':
-                    if(stack.size()==0||'('!=stack.pop()){
-                        return false;
-                    }
-                    break;
-                case '}':
-                    if(stack.size()==0||'{'!=stack.pop()){
-                        return false;
-                    }
-                    break;
-                case ']':
-                    if(stack.size()==0||'[' != stack.pop()){
-                        return false;
-                    }
-            }
-        }
-        return stack.size() <= 0;
+          }
+          break;
+        case '}':
+          if (stack.size() == 0 || '{' != stack.pop()) {
+            return false;
+          }
+          break;
+        case ']':
+          if (stack.size() == 0 || '[' != stack.pop()) {
+            return false;
+          }
+      }
     }
+    return stack.size() <= 0;
+  }
 }

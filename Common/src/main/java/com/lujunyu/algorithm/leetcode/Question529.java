@@ -3,13 +3,15 @@ package com.lujunyu.algorithm.leetcode;
 public class Question529 {
   public static void main(String[] args) {
 
-    char[][] param = new char[][]{{'E', 'E', 'E', 'E', 'E'},
-      {'E', 'E', 'M', 'E', 'E'},
-      {'E', 'E', 'E', 'E', 'E'},
-      {'E', 'E', 'E', 'E', 'E'}};
+    char[][] param =
+        new char[][] {
+          {'E', 'E', 'E', 'E', 'E'},
+          {'E', 'E', 'M', 'E', 'E'},
+          {'E', 'E', 'E', 'E', 'E'},
+          {'E', 'E', 'E', 'E', 'E'}
+        };
 
-
-    System.out.println(new Solution().updateBoard(param,new int[]{3,0}));
+    System.out.println(new Solution().updateBoard(param, new int[] {3, 0}));
   }
 
   static class Solution {

@@ -1,4 +1,3 @@
 package com.lujunyu.juice.best;
 
-public class Tree2 {
-}
+public class Tree2 {}

@@ -6,11 +6,11 @@ import lombok.ToString;
 
 @ToString
 public class InstanceBindings {
-    @Inject
-    @Named("login timeout seconds")
-    private int timesout;
+  @Inject
+  @Named("login timeout seconds")
+  private int timesout;
 
-    @Inject
-    @Named("JDBC URL")
-    private String url;
+  @Inject
+  @Named("JDBC URL")
+  private String url;
 }

@@ -8,24 +8,20 @@ import org.junit.Test;
 
 public class TestOthers {
 
-  /**
-   * 目前没有搞清楚这个有啥用。
-   */
+  /** 目前没有搞清楚这个有啥用。 */
   @Test
-  public void testClassToInstanceMap(){
-    MutableClassToInstanceMap<String> objectMutableClassToInstanceMap = MutableClassToInstanceMap.create();
-    objectMutableClassToInstanceMap.putInstance(String.class,"bj");
+  public void testClassToInstanceMap() {
+    MutableClassToInstanceMap<String> objectMutableClassToInstanceMap =
+        MutableClassToInstanceMap.create();
+    objectMutableClassToInstanceMap.putInstance(String.class, "bj");
     System.out.println(objectMutableClassToInstanceMap.getInstance(String.class));
   }
 
-  /**
-   * 这个数据结构用于表示一段区间范围。
-   */
+  /** 这个数据结构用于表示一段区间范围。 */
   @Test
-  public void testRangeSet(){
-    ImmutableRangeSet<Integer> rangeSet = ImmutableRangeSet.<Integer>builder().add(Range.closed(1, 2))
-        .add(Range.open(2, 10))
-        .build();
+  public void testRangeSet() {
+    ImmutableRangeSet<Integer> rangeSet =
+        ImmutableRangeSet.<Integer>builder().add(Range.closed(1, 2)).add(Range.open(2, 10)).build();
 
     System.out.println(rangeSet.contains(3));
     System.out.println(rangeSet.contains(11));
@@ -33,12 +29,14 @@ public class TestOthers {
     System.out.println(rangeSet);
   }
 
-  /**
-   * 用于表示一段区间映射的值。
-   */
+  /** 用于表示一段区间映射的值。 */
   @Test
-  public void testRangeMap(){
-    ImmutableRangeMap<Integer, String> rangeMap = ImmutableRangeMap.<Integer,String>builder().put(Range.closed(1, 2), "1-2").put(Range.closed(3, 5), "3-5").build();
+  public void testRangeMap() {
+    ImmutableRangeMap<Integer, String> rangeMap =
+        ImmutableRangeMap.<Integer, String>builder()
+            .put(Range.closed(1, 2), "1-2")
+            .put(Range.closed(3, 5), "3-5")
+            .build();
     System.out.println(rangeMap.get(1));
     System.out.println(rangeMap.get(2));
     System.out.println(rangeMap.get(3));

@@ -1,5 +1,5 @@
 package com.lujunyu.task;
 
 public interface Task {
-	void execute();
+  void execute();
 }

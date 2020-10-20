@@ -46,7 +46,6 @@ public class Test {
     File outputRotateImageFile = new File("/Users/jerry_lu/Desktop/22.png");
 
     addTextWatermark(logoText, srcImgFile, outputRotateImageFile);
-
   }
 
   static void addTextWatermark(String text, File sourceImageFile, File destImageFile) {

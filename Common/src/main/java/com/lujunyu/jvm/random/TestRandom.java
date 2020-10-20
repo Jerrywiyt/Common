@@ -8,13 +8,13 @@ import java.security.SecureRandom;
 
 public class TestRandom {
 
-    @Test
-    public void testSecureRandom() throws NoSuchAlgorithmException {
-//        SecureRandom secureRandom = new SecureRandom();
-//        SecureRandom secureRandom = SecureRandom.getInstance("SHA1PRNG");
-        SecureRandom secureRandom = SecureRandom.getInstance("NativePRNG");
-        System.out.println(secureRandom.getAlgorithm());
-        System.out.println(Hex.encodeHexString(secureRandom.generateSeed(10)));
-        System.out.println(secureRandom.nextInt());
-    }
+  @Test
+  public void testSecureRandom() throws NoSuchAlgorithmException {
+    //        SecureRandom secureRandom = new SecureRandom();
+    //        SecureRandom secureRandom = SecureRandom.getInstance("SHA1PRNG");
+    SecureRandom secureRandom = SecureRandom.getInstance("NativePRNG");
+    System.out.println(secureRandom.getAlgorithm());
+    System.out.println(Hex.encodeHexString(secureRandom.generateSeed(10)));
+    System.out.println(secureRandom.nextInt());
+  }
 }

@@ -10,11 +10,13 @@ import java.util.PriorityQueue;
 public class Question332 {
 
   public static void main(String[] args) {
-    System.out.println(new Question332().new Solution().findItinerary(Lists.newArrayList(
-        Lists.newArrayList("JFK","KUL"),
-        Lists.newArrayList("JFK","NRT"),
-        Lists.newArrayList("NRT","JFK")
-    )));
+    System.out.println(
+        new Question332().new Solution()
+            .findItinerary(
+                Lists.newArrayList(
+                    Lists.newArrayList("JFK", "KUL"),
+                    Lists.newArrayList("JFK", "NRT"),
+                    Lists.newArrayList("NRT", "JFK"))));
   }
 
   class Solution {
@@ -38,8 +40,7 @@ public class Question332 {
 
     private void dfs(String src) {
       PriorityQueue<String> pq = map.get(src);
-      while (pq != null && !pq.isEmpty())
-        dfs(pq.poll());
+      while (pq != null && !pq.isEmpty()) dfs(pq.poll());
       ((LinkedList<String>) resList).addFirst(src);
     }
   }

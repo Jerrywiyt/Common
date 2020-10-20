@@ -6,6 +6,5 @@ import lombok.ToString;
 
 @ToString
 public class Tree1 {
-  @Inject
-  private Fruit fruit;
+  @Inject private Fruit fruit;
 }

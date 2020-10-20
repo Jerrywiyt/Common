@@ -5,36 +5,38 @@ import com.lujunyu.utils.excel.Excel;
 /**
  * @author 58
  * @create 2018-05-07 16:05
- **/
+ */
 public class User {
-    @Excel(name="姓名")
-    private String name;
-    @Excel(name="性别")
-    private String sex;
-    @Excel(name="年龄")
-    private int age;
+  @Excel(name = "姓名")
+  private String name;
 
-    public String getName() {
-        return name;
-    }
+  @Excel(name = "性别")
+  private String sex;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  @Excel(name = "年龄")
+  private int age;
 
-    public String getSex() {
-        return sex;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public int getAge() {
-        return age;
-    }
+  public String getSex() {
+    return sex;
+  }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
+  public void setSex(String sex) {
+    this.sex = sex;
+  }
+
+  public int getAge() {
+    return age;
+  }
+
+  public void setAge(int age) {
+    this.age = age;
+  }
 }

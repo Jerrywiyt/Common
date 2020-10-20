@@ -7,9 +7,9 @@ import lombok.ToString;
 @Singleton
 @ToString
 public class Service {
-    public Service(){
-       // InjectorInstance.injector.injectMembers(this);
-    }
-    @Inject
-    private Biz biz;
+  public Service() {
+    // InjectorInstance.injector.injectMembers(this);
+  }
+
+  @Inject private Biz biz;
 }

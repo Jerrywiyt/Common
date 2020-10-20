@@ -1,4 +1,3 @@
 package com.lujunyu.juice.best;
 
-public class Apple {
-}
+public class Apple {}

@@ -15,31 +15,33 @@ import io.netty.util.CharsetUtil;
 
 public class FileServer {
 
-    public void run(int port)throws Exception{
-        EventLoopGroup boss = new NioEventLoopGroup();
-        EventLoopGroup work = new NioEventLoopGroup();
-        try{
-            ServerBootstrap b = new ServerBootstrap();
-            b.group(boss,work)
-                    .channel(NioServerSocketChannel.class)
-                    .option(ChannelOption.SO_BACKLOG,100)
-                    .childHandler(new ChannelInitializer<SocketChannel>() {
-                        @Override
-                        protected void initChannel(SocketChannel ch) throws Exception {
-                            ch.pipeline().addLast(new StringDecoder(CharsetUtil.UTF_8));
-                            ch.pipeline().addLast(new LineBasedFrameDecoder(1024));
-                            ch.pipeline().addLast(new StringEncoder(CharsetUtil.UTF_8));
-                            ch.pipeline().addLast(new FileServerHandler());
-                        }
-                    });
-            ChannelFuture f = b.bind(port).sync();
-            f.channel().closeFuture().sync();
-        }finally {
-            work.shutdownGracefully();
-            boss.shutdownGracefully();
-        }
+  public void run(int port) throws Exception {
+    EventLoopGroup boss = new NioEventLoopGroup();
+    EventLoopGroup work = new NioEventLoopGroup();
+    try {
+      ServerBootstrap b = new ServerBootstrap();
+      b.group(boss, work)
+          .channel(NioServerSocketChannel.class)
+          .option(ChannelOption.SO_BACKLOG, 100)
+          .childHandler(
+              new ChannelInitializer<SocketChannel>() {
+                @Override
+                protected void initChannel(SocketChannel ch) throws Exception {
+                  ch.pipeline().addLast(new StringDecoder(CharsetUtil.UTF_8));
+                  ch.pipeline().addLast(new LineBasedFrameDecoder(1024));
+                  ch.pipeline().addLast(new StringEncoder(CharsetUtil.UTF_8));
+                  ch.pipeline().addLast(new FileServerHandler());
+                }
+              });
+      ChannelFuture f = b.bind(port).sync();
+      f.channel().closeFuture().sync();
+    } finally {
+      work.shutdownGracefully();
+      boss.shutdownGracefully();
     }
-    public static void main(String args[]) throws Exception {
-        new FileServer().run(8080);
-    }
+  }
+
+  public static void main(String args[]) throws Exception {
+    new FileServer().run(8080);
+  }
 }

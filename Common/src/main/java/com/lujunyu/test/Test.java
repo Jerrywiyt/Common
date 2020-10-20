@@ -68,9 +68,9 @@ public class Test {
   public static void main(String[] args) {
     // [[3,3],[1,-1],[5,1],[11,-1],[11,1],[1],[11,1],[5],[11,-1]]
 
-//    ["BlackBox","open","open","open","close","open"]
-//[[2,3],[6,-1],[4,-1],[0,-1],[6],[0,-1]]1
-/*    BlackBox blackBox = new BlackBox(3, 3);
+    //    ["BlackBox","open","open","open","close","open"]
+    // [[2,3],[6,-1],[4,-1],[0,-1],[6],[0,-1]]1
+    /*    BlackBox blackBox = new BlackBox(3, 3);
 
     System.out.println(blackBox.open(1, -1));
     System.out.println(blackBox.open(5, 1));
@@ -82,8 +82,8 @@ public class Test {
     System.out.println(blackBox.open(11, -1));*/
 
     BlackBox blackBox = new BlackBox(2, 3);
-    System.out.println(blackBox.open(6,-1));
-    System.out.println(blackBox.open(4,-1));
+    System.out.println(blackBox.open(6, -1));
+    System.out.println(blackBox.open(4, -1));
   }
 
   static class BlackBox {

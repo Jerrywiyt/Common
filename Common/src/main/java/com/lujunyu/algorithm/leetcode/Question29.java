@@ -2,7 +2,7 @@ package com.lujunyu.algorithm.leetcode;
 
 public class Question29 {
   public static void main(String[] args) {
-    System.out.println(new Question29().new Solution().divide(7,-3));
+    System.out.println(new Question29().new Solution().divide(7, -3));
   }
 
   class Solution {
@@ -29,9 +29,9 @@ public class Question29 {
       }
 
       if ((dividend > 0 && divisor > 0) || (dividend < 0 && divisor < 0)) {
-        return res > Integer.MAX_VALUE?Integer.MAX_VALUE: (int) res;
+        return res > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int) res;
       } else {
-        return res > ((long)Integer.MAX_VALUE + 1)?Integer.MIN_VALUE: (int) -res;
+        return res > ((long) Integer.MAX_VALUE + 1) ? Integer.MIN_VALUE : (int) -res;
       }
     }
   }
